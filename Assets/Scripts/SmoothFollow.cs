@@ -5,7 +5,7 @@ using UnityEngine;
 public class SmoothFollow : MonoBehaviour {
 
 	public Transform target;
-
+	public Transform center;
 	public float smoothness = 1f;
 	public float rotationSmoothness = .1f;
 
@@ -25,9 +25,8 @@ public class SmoothFollow : MonoBehaviour {
 		//transform.position = newPos;
 		transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, smoothness);
 
-		Quaternion targetRot = Quaternion.LookRotation(-transform.position.normalized, target.up);
-		//transform.rotation = targetRot;
-		transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSmoothness);
+		transform.LookAt(center,transform.up);
 
+		//transform.eulerAngles = new Vector3 (transform.eulerAngles.x + 7,transform.eulerAngles.y,transform.eulerAngles.z);
 	}
 }

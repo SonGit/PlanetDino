@@ -46,4 +46,20 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         InputDirection = Vector3.zero;
         jsImg.rectTransform.anchoredPosition = Vector3.zero;
     }
+
+	public float Horizontal()
+	{
+		if (InputDirection.x != 0)
+			return InputDirection.x;
+		else
+			return 0;
+	}
+
+	public float Vertical()
+	{
+		if (InputDirection.z != 0)
+			return InputDirection.z;
+		else
+			return 0;
+	}
 }
