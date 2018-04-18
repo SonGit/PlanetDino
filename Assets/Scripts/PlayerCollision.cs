@@ -10,13 +10,24 @@ public class PlayerCollision : MonoBehaviour {
 	{
 		if (col.collider.tag == "Meteor")
 		{
-			Instantiate(deathEffect, transform.position, transform.rotation);
+			ScreenShot.Instance.PlayScreenShot ();
+
+			DataController.Instance.SubmitNewPlayerScore (Planet.Score);
+
+			StartCoroutine (WaitDestroyPlayer());
+
 			GameManager.instance.EndGame();
 
 			AudioManager.instance.Play("PlayerDeath");
 
-			Destroy(gameObject);
 		}
+	}
+
+	private IEnumerator WaitDestroyPlayer ()
+	{
+		yield return new WaitForSeconds (0.05f);
+		Instantiate(deathEffect, transform.position, transform.rotation);
+		Destroy(gameObject);
 	}
 
 }

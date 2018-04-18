@@ -1,5 +1,7 @@
-using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,9 +14,15 @@ public class GameManager : MonoBehaviour {
 		instance = this;
 	}
 
-	public void EndGame ()
+	private IEnumerator WaitEndGame ()
 	{
+		yield return new WaitForSeconds (2);
 		gameOverUI.SetActive(true);
+	}
+
+	public void EndGame ()
+	{	
+		StartCoroutine (WaitEndGame());
 	}
 
 	public void Restart ()
