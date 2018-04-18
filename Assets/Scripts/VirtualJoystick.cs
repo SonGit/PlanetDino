@@ -1,65 +1,68 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections;
+using UnityEngine.UI;
 
-public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
-{
-	private Image bgImg, jsImg;
-    public Vector3 InputDirection { set; get; }
+public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler {
 
-    private void Start()
-    {
-        bgImg = GetComponent<Image>();
-        jsImg = GetComponentsInChildren<Image>()[1];
-        InputDirection = Vector3.zero;
-    }
+	public Image ImgBg;
+	public Image ImgJoystick;
+	public Transform ImgAnchor;
 
-    //EventSystems interfaces
-    public virtual void OnDrag(PointerEventData ped)
-    {
-        Vector2 pos = Vector2.zero;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle
-            (   bgImg.rectTransform,
-                ped.position,
-                ped.pressEventCamera,
-                out pos))
-        {
-            pos.x = (pos.x / bgImg.rectTransform.sizeDelta.x);
-            pos.y = (pos.y / bgImg.rectTransform.sizeDelta.y);
-
-            float x = (bgImg.rectTransform.pivot.x == 1) ? pos.x * 2 + 1 : pos.x * 2 - 1;
-            float y = (bgImg.rectTransform.pivot.y == 1) ? pos.y * 2 + 1 : pos.y * 2 - 1;
-
-            InputDirection = new Vector3(x, 0, y);
-            InputDirection = (InputDirection.magnitude > 1) ? InputDirection.normalized : InputDirection;
-            jsImg.rectTransform.anchoredPosition = new Vector3(InputDirection.x * (bgImg.rectTransform.sizeDelta.x / 3)
-                , InputDirection.z * (bgImg.rectTransform.sizeDelta.y / 3));
-        }
-    }
-    public virtual void OnPointerDown(PointerEventData ped)
-    {
-        OnDrag(ped);
-    }
-    public virtual void OnPointerUp(PointerEventData ped)
-    {
-        InputDirection = Vector3.zero;
-        jsImg.rectTransform.anchoredPosition = Vector3.zero;
-    }
-
-	public float Horizontal()
-	{
-		if (InputDirection.x != 0)
-			return InputDirection.x;
-		else
-			return 0;
+	private Vector3 _inputVector;
+	public Vector3 InputVector {
+		get {
+			return _inputVector;
+		}
 	}
 
-	public float Vertical()
+	void Update()
 	{
-		if (InputDirection.z != 0)
-			return InputDirection.z;
-		else
-			return 0;
+
 	}
+
+	public void OnPointerDown(PointerEventData e) {
+		ImgAnchor.transform.position = Input.mousePosition;
+		OnDrag(e);
+	}
+
+	public void OnDrag(PointerEventData e) {
+		Vector2 pos;
+		if (RectTransformUtility.ScreenPointToLocalPointInRectangle(ImgBg.rectTransform,
+			e.position,
+			e.pressEventCamera,
+			out pos)) {
+
+			pos.x = (pos.x / ImgBg.rectTransform.sizeDelta.x);
+			pos.y = (pos.y / ImgBg.rectTransform.sizeDelta.y);
+
+			_inputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 -1);
+			_inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
+
+			ImgJoystick.rectTransform.anchoredPosition = new Vector3(_inputVector.x * (ImgBg.rectTransform.sizeDelta.x * .4f),
+				_inputVector.z * (ImgBg.rectTransform.sizeDelta.y * .4f));
+		}
+	}   
+
+	public void OnPointerUp(PointerEventData e) {
+		_inputVector = Vector3.zero;
+		ImgJoystick.rectTransform.anchoredPosition = Vector3.zero;
+	}
+
+
+	public float Horizontal() {
+		if (_inputVector.x != 0) {
+			return _inputVector.x;
+		}
+
+		return Input.GetAxis("Horizontal");
+	}
+
+	public float Vertical() {
+		if (_inputVector.z != 0) {
+			return _inputVector.z;
+		}
+
+		return Input.GetAxis("Vertical");
+	}
+
 }

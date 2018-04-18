@@ -24,12 +24,10 @@ public class PlanetPole : MonoBehaviour {
 	void FixedUpdate () {
 		distanceToDark = Vector3.Distance (transform.position,player.position);
 
-		maxDistance = (planet.localScale.x * 8.5f) / 0.8f;
+		maxDistance = (planet.localScale.x * 9f) / 0.8f;
 
 		float alpha = (distanceToDark * 255) / maxDistance;
 
 		matCache.color = new Color32 (0,0,0, (byte)(255 -alpha));
-
-		print (alpha);
 	}
 }
