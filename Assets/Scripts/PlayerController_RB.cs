@@ -9,41 +9,20 @@ public class PlayerController_RB : MonoBehaviour {
     private Vector3 moveDirection;
     private Rigidbody playerRigidBody;
     private Transform playerMesh;
-    private FakeGravityBody worldGravity;
-    public GameObject[] worlds;
+
     public int currentWorld = 0;
 	public VirtualJoystick joystick;
+
     // Use this for initialization
     void Start() {
         playerRigidBody = GetComponent<Rigidbody>();
         playerMesh = transform.GetChild(0).transform;
-        worldGravity = GetComponent<FakeGravityBody>();
-        worlds = GameObject.FindGameObjectsWithTag("World");
     }
 
     // Update is called once per frame
     void Update() {
         // update move direction
 		moveDirection = new Vector3(joystick.Horizontal(), 0, joystick.Vertical()).normalized;
-
-
-        // world swap
-        if (Input.GetKeyDown("n"))
-        {
-            if (currentWorld + 1 > worlds.Length)
-            {
-                currentWorld = 0;
-            }
-            else
-            {
-                currentWorld++;
-            }
-
-
-            worldGravity.attractor = worlds[currentWorld].GetComponent<FakeGravity>();
-        }
-
-
     }
 
     void FixedUpdate()
