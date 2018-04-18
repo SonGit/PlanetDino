@@ -27,7 +27,8 @@ public class SmoothFollow : MonoBehaviour {
 
 		Quaternion targetRot = Quaternion.LookRotation(-transform.position.normalized, target.up);
 		//transform.rotation = targetRot;
-		transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSmoothness);
+		//transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSmoothness);
+		transform.LookAt(target);
 
 	}
 }

@@ -14,6 +14,8 @@ public class Planet : MonoBehaviour {
 		get { return Size * 63f; }
 	}
 
+	public static float highScore;
+
 	private static Transform myTransform;
 
 	public float shrinkSpeed = .05f;
@@ -21,6 +23,7 @@ public class Planet : MonoBehaviour {
 	void Awake ()
 	{
 		myTransform = transform;
+		highScore = Score;
 	}
 
 	void Update ()
