@@ -28,6 +28,6 @@ public class PlanetPole : MonoBehaviour {
 
 		float alpha = (distanceToDark * 255) / maxDistance;
 
-		matCache.color = new Color32 (0,0,0, (byte)(255 -alpha));
+		matCache.color = new Color32 (255,255,255, (byte)(255 -alpha));
 	}
 }
