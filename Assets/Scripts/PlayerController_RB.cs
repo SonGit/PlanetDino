@@ -31,6 +31,8 @@ public class PlayerController_RB : MonoBehaviour {
         playerRigidBody.MovePosition(playerRigidBody.position + transform.TransformDirection(moveDirection * speed * Time.fixedDeltaTime));
         // rotate player to face the right direction
         RotatePlayer();
+
+		playerRigidBody.MovePosition (transform.position + playerMesh.transform.forward * speed * Time.fixedDeltaTime);
     }
 
     // Rotate player to face direction of movement
