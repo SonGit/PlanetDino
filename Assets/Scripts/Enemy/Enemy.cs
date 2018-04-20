@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Cacheable {
 	[HideInInspector]
 	public int randNum;
 
@@ -28,8 +28,9 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Init ();
+		Destroy ();
 	}
+		
 
 	protected void Init()
 	{
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour {
 		RandomAngle ();
 		RandomColor ();
 		randNum = Random.Range (-9999,9999);
+
 	}
 	
 	// Update is called once per frame
@@ -71,7 +73,7 @@ public class Enemy : MonoBehaviour {
 	private void EatEnemy(Enemy enemy)
 	{
 		if (enemy.randNum < this.randNum) {
-			Destroy (gameObject);
+			Destroy ();
 		} else {
 			RandomColor (true);
 		}
@@ -94,4 +96,17 @@ public class Enemy : MonoBehaviour {
 
 		return false;
 	}
+
+	public override void OnDestroy ()
+	{
+		gameObject.SetActive (false);
+	}
+
+	public override void OnLive ()
+	{
+		gameObject.SetActive (true);
+		Init ();
+	}
+
+
 }

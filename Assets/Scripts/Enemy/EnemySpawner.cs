@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-	public GameObject prefab;
 	public float rate;
 	public FakeGravity fakeGrav;
+
 	// Use this for initialization
 	void Start () {
 		fakeGrav = this.GetComponent<FakeGravity> ();
@@ -16,17 +16,20 @@ public class EnemySpawner : MonoBehaviour {
 	IEnumerator Spawn()
 	{
 		while (true) {
-
 			yield return new WaitForSeconds (rate);
-			GameObject enemyGo = Instantiate (prefab);
+			Enemy enemyGo = ObjectPool.instance.GetEnemy ();
+			enemyGo.transform.position = Random.insideUnitSphere * 15;
 			FakeGravityBody gavBody = enemyGo.GetComponent<FakeGravityBody> ();
 			gavBody.attractor = fakeGrav;
-			enemyGo.transform.position = Random.insideUnitCircle * 15;
+			enemyGo.Live ();
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
+
+
+
+
 }

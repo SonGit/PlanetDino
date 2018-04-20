@@ -21,6 +21,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 	}
 
 	public void OnPointerDown(PointerEventData e) {
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.Click,transform.position);
 		ImgAnchor.transform.position = Input.mousePosition;
 		OnDrag(e);
 	}
