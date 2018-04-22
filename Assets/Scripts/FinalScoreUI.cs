@@ -6,7 +6,7 @@ public class FinalScoreUI : MonoBehaviour {
 
 	void Start ()
 	{
-		GetComponent<Text>().text = "d = <i><b>" + Planet.Score.ToString("0.#") + "</b>m</i>";
+		GetComponent<Text>().text = "d = <i><b>" + DataController.Instance.GetHighestPlayerScore ().ToString ("0.#") + "</b>m</i>";
 	}
 
 }

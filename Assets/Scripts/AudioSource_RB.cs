@@ -22,7 +22,7 @@ public class AudioSource_RB : Cacheable {
 		Destroy ();
 	}
 
-	float timeCount = 0;
+	private float timeCount = 0;
 
 	// Update is called once per frame
 	void Update () {
