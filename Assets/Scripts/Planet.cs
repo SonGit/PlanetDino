@@ -20,6 +20,8 @@ public class Planet : MonoBehaviour {
 
 	public float shrinkSpeed = .05f;
 
+	public float minSize;
+
 	void Awake ()
 	{
 		myTransform = transform;
@@ -28,7 +30,9 @@ public class Planet : MonoBehaviour {
 
 	void Update ()
 	{
-		transform.localScale *= 1f - shrinkSpeed * Time.deltaTime;
+		if (transform.localScale.x > minSize) {
+			transform.localScale *= 1f - shrinkSpeed * Time.deltaTime;
+		}
 	}
 
 }

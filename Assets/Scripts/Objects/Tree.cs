@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour {
 
+	public Transform planetScale;
+
+	private float startScale;
+
+	Transform t;
+
 	// Use this for initialization
 	void Start () {
-		
+		planetScale = transform.parent.parent.transform;
+		startScale = planetScale.localScale.x;
+		t = transform;
 	}
 	
 	// Update is called once per frame

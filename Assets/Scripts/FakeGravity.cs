@@ -6,6 +6,13 @@ public class FakeGravity : MonoBehaviour {
 
     public float gravity = -10;
 
+	private SphereCollider col;
+
+	void Start()
+	{
+		col = this.GetComponent<SphereCollider> ();
+	}
+
     public void Attract(Transform objBody)
     {
         // set planet gravity direction for the object body
@@ -17,5 +24,6 @@ public class FakeGravity : MonoBehaviour {
         Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityDir) * objBody.rotation;
         // smooth rotation
         objBody.rotation = Quaternion.Slerp(objBody.rotation, targetRotation, 50 * Time.fixedDeltaTime);
+
     }
 }

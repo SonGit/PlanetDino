@@ -13,11 +13,12 @@ public class Enemy : Character {
 		Init ();
 	}
 		
-
 	protected override void Init()
 	{
 		base.Init ();
 		randNum = Random.Range (-9999,9999);
+		Rigidbody rb = this.GetComponent<Rigidbody> ();
+		rb.velocity = Vector3.zero;;
 	}
 	
 	// Update is called once per frame

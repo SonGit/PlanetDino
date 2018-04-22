@@ -8,10 +8,18 @@ public class Player : Character {
 
 	public GameObject dustParticle;
 
+	Rigidbody rb;
+
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
 		Application.targetFrameRate =30;
 		Init ();
+		rb = this.GetComponent<Rigidbody> ();
+		rb.isKinematic = true;
+		rb.velocity = Vector3.zero;;
+
+		rb.isKinematic = false;
+		yield return new WaitForSeconds (.25f);
 	}
 	
 	// Update is called once per frame
@@ -34,7 +42,7 @@ public class Player : Character {
 		}
 		else 
 		{
-	
+			enemy.Killed ();
 		}
 	}
 

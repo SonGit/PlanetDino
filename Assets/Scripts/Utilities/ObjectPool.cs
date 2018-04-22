@@ -11,6 +11,8 @@ public class ObjectPool : MonoBehaviour {
 	GenericObject<Enemy> enemy;
 	GenericObject<AudioSource_RB> audioSource;
 
+	public FakeGravity fakeGravity;
+
 	void Awake()
 	{
 		instance = this;

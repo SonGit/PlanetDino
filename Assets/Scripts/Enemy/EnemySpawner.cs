@@ -18,10 +18,11 @@ public class EnemySpawner : MonoBehaviour {
 		while (true) {
 			yield return new WaitForSeconds (rate);
 			Enemy enemyGo = ObjectPool.instance.GetEnemy ();
-			enemyGo.transform.position = Random.insideUnitSphere * 15;
-			FakeGravityBody gavBody = enemyGo.GetComponent<FakeGravityBody> ();
-			gavBody.attractor = fakeGrav;
 			enemyGo.Live ();
+			Vector3 pos = Random.insideUnitSphere * 5.5f;
+			enemyGo.transform.position = pos;
+			Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();
+			rb.velocity = Vector3.zero;
 		}
 	}
 	

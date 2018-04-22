@@ -6,6 +6,8 @@ public class PlanetPole : MonoBehaviour {
 
 	public Renderer skybox;
 
+	public SpriteRenderer halo;
+
 	public Transform player;
 
 	public Transform planet;
@@ -29,5 +31,7 @@ public class PlanetPole : MonoBehaviour {
 		float alpha = (distanceToDark * 255) / maxDistance;
 
 		matCache.color = new Color32 (255,255,255, (byte)(255 -alpha));
+
+		halo.color = new Color32 (255,255,255, (byte)(255 -alpha));
 	}
 }

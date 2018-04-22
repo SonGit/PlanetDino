@@ -11,12 +11,16 @@ public class FakeGravityBody : MonoBehaviour {
 	void Start () {
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         GetComponent<Rigidbody>().useGravity = false;
+		attractor = ObjectPool.instance.fakeGravity;
         objTransform = transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(attractor != null)
-        attractor.Attract(objTransform);
+		if (attractor != null)
+			attractor.Attract (objTransform);
+		else {
+			print ("NOL");
+		}
 	}
 }
