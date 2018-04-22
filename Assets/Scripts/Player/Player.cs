@@ -2,25 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Character {
 
 	public Transform playerMesh;
 
 	public GameObject dustParticle;
 
 	// Use this for initialization
-	IEnumerator Start () {
-		GameObject dustGO;
-		while (true) {
-			dustGO = Instantiate (dustParticle);
-			dustGO.transform.position = transform.position;
-			dustGO.transform.eulerAngles = transform.eulerAngles * -1;
-			yield return new WaitForSeconds (1);
-		}
+	void Start () {
+		Init ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+	void OnCollisionEnter(Collision other) {
+
+		if (CheckIfAEnemy(other.transform)) {
+			OnHitEnemy (other.transform.GetComponent<Enemy> ());
+		}
+	}
+		
+	private void OnHitEnemy(Enemy enemy)
+	{
+		if (enemy.currentColor.name == currentColor.name) {
+			enemy.Killed ();
+			RandomColor ();
+		}
+		else 
+		{
+	
+		}
+	}
+
 }

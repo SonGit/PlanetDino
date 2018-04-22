@@ -16,6 +16,7 @@ public class FakeGravityBody : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(attractor != null)
         attractor.Attract(objTransform);
 	}
 }
