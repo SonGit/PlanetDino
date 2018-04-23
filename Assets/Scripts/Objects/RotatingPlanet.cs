@@ -12,7 +12,7 @@ public class RotatingPlanet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.RotateAround(Vector3.zero, new Vector3(0,0,1), speed * Time.deltaTime);
-		transform.LookAt (center,Vector3.up);
+		transform.RotateAround(Vector3.zero, new Vector3(0,1,1), speed * Time.deltaTime);
+		transform.LookAt (center,transform.up);
 	}
 }
