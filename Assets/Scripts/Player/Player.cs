@@ -24,7 +24,7 @@ public class Player : Character {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		rb.velocity = Vector3.zero;
 	}
 
 	void OnCollisionEnter(Collision other) {
