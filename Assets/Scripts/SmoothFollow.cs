@@ -14,7 +14,7 @@ public class SmoothFollow : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
 		if (target == null)
 		{
