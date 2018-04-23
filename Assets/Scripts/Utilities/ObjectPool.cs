@@ -11,7 +11,10 @@ public class ObjectPool : MonoBehaviour {
 	GenericObject<Enemy> enemy;
 	GenericObject<AudioSource_RB> audioSource;
 	GenericObject<Explosion> explosion;
-
+	GenericObject<Explosion> explosionPink;
+	GenericObject<Explosion> explosionGreen;
+	GenericObject<Explosion> explosionBlue;
+	GenericObject<Explosion> explosionBabyBlue;
 	public FakeGravity fakeGravity;
 
 	void Awake()
@@ -21,10 +24,13 @@ public class ObjectPool : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,25);
+		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,3);
 		audioSource = new GenericObject<AudioSource_RB>(ObjectFactory.PrefabType.AudioSource,1);
-		explosion = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion,0);
-
+		explosion = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion,2);
+		explosionPink = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionPink,2);
+		explosionGreen = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionLightBlue,2);
+		explosionBlue = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBlue,2);
+		explosionBabyBlue= new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBabyBlue,2);
 	}
 		
 
@@ -43,4 +49,23 @@ public class ObjectPool : MonoBehaviour {
 		return explosion.GetObj ();
 	}
 
+	public Explosion GetExplosionPink()
+	{
+		return explosionPink.GetObj ();
+	}
+
+	public Explosion GetExplosionGreen()
+	{
+		return explosionGreen.GetObj ();
+	}
+
+	public Explosion GetExplosionBlue()
+	{
+		return explosionBlue.GetObj ();
+	}
+
+	public Explosion GetExplosionBabyBlue()
+	{
+		return explosionBabyBlue.GetObj ();
+	}
 }

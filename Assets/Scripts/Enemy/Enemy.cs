@@ -75,9 +75,34 @@ public class Enemy : Character {
 	public void ExplosionEffect (Vector3 pos)
 	{
 		Explosion explosion = ObjectPool.instance.GetExplosion ();
+
+
+		print (currentColor.name);
+
+		switch (currentColor.name) {
+
+		case "Character_1":
+			explosion = ObjectPool.instance.GetExplosionGreen ();
+			break;
+		case "Character_2":
+			explosion = ObjectPool.instance.GetExplosionBabyBlue ();
+			break;
+		case "Character_3":
+			explosion = ObjectPool.instance.GetExplosionBlue ();
+			break;
+		case "Character_4":
+			explosion = ObjectPool.instance.GetExplosionPink ();
+			break;
+
+		default:
+			explosion = ObjectPool.instance.GetExplosion ();
+			break;
+		}
+
 		if (explosion != null) {
 			explosion.transform.position = pos;
 			explosion.Live ();
+			explosion.Play ();
 		}
 
 	}

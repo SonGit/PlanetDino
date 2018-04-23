@@ -30,10 +30,15 @@ public class Explosion : Cacheable {
 
 	public override void OnDestroy ()
 	{
+		gameObject.SetActive (false);
+	}
 		
+	public override void OnLive ()
+	{
+		gameObject.SetActive (true);
 	}
 
-	public override void OnLive ()
+	public void Play()
 	{
 		particles = this.GetComponentsInChildren<ParticleSystem> ();
 		foreach (ParticleSystem particle in particles) {

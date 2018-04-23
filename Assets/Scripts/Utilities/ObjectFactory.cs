@@ -18,6 +18,10 @@ public class ObjectFactory: MonoBehaviour {
 		Enemy,
 		AudioSource,
 		Explosion,
+		ExplosionLightBlue,
+		ExplosionPink,
+		ExplosionBlue,
+		ExplosionBabyBlue
 	}
 
 	public Dictionary<PrefabType,string> PrefabPaths = new Dictionary<PrefabType, string> {
@@ -26,7 +30,10 @@ public class ObjectFactory: MonoBehaviour {
 		{ PrefabType.Enemy, "Prefabs/Enemy" },
 		{ PrefabType.AudioSource, "Prefabs/AudioSource" },
 		{ PrefabType.Explosion, "Prefabs/Explosion" },
-
+		{ PrefabType.ExplosionPink, "Prefabs/ExplosionPink" },
+		{ PrefabType.ExplosionLightBlue, "Prefabs/ExplosionLightBlue" },
+		{ PrefabType.ExplosionBlue, "Prefabs/ExplosionBlue" },
+		{ PrefabType.ExplosionBabyBlue, "Prefabs/ExplosionBabyBlue" },
 	};
 
 	public GameObject MakeObject(PrefabType type)
