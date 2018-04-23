@@ -23,6 +23,8 @@ public class Enemy : Character {
 	// Update is called once per frame
 	void Update () {
 		MoveForward ();
+
+
 	}
 
 	private void RandomAngle()
@@ -56,6 +58,13 @@ public class Enemy : Character {
 		}
 
 	}
+
+	public void ComboButton ()
+	{
+		ComboScoreManager.instance.comboScoreCount += 1;
+		ComboScoreManager.instance.comboScoreTimeCount = 0;
+	}
+		
 
 		
 
