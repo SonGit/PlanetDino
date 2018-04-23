@@ -7,6 +7,9 @@ public class Enemy : Character {
 	public int randNum;
 
 	public float speed;
+	public Transform ExplosionEffectPos;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +44,7 @@ public class Enemy : Character {
 	{
 		if (enemy.randNum < this.randNum) {
 			Destroy ();
+
 		} else {
 			RandomColor ();
 		}
@@ -49,6 +53,7 @@ public class Enemy : Character {
 	public void Killed()
 	{
 		Destroy ();
+		ExplosionEffect (transform.position);
 	}
 
 	void OnCollisionEnter(Collision other) {
@@ -61,12 +66,22 @@ public class Enemy : Character {
 
 	public void ComboButton ()
 	{
+		ComboScoreManager.instance.isActiveComboScore = true;
 		ComboScoreManager.instance.comboScoreCount += 1;
 		ComboScoreManager.instance.comboScoreTimeCount = 0;
 	}
 		
+	public void ExplosionEffect (Vector3 pos)
+	{
+		Explosion explosion = ObjectPool.instance.GetExplosion ();
+		if (explosion != null) {
+			explosion.transform.position = pos;
+			explosion.Live ();
+		}
 
-		
+	}
+
+
 
 
 

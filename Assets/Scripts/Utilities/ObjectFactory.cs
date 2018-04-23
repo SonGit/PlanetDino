@@ -16,7 +16,8 @@ public class ObjectFactory: MonoBehaviour {
 	{
 		None,
 		Enemy,
-		AudioSource
+		AudioSource,
+		Explosion,
 	}
 
 	public Dictionary<PrefabType,string> PrefabPaths = new Dictionary<PrefabType, string> {
@@ -24,6 +25,7 @@ public class ObjectFactory: MonoBehaviour {
 		{ PrefabType.None, "" },
 		{ PrefabType.Enemy, "Prefabs/Enemy" },
 		{ PrefabType.AudioSource, "Prefabs/AudioSource" },
+		{ PrefabType.Explosion, "Prefabs/Explosion" },
 
 	};
 

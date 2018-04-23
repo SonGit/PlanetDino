@@ -12,6 +12,7 @@ public class ComboScoreManager : MonoBehaviour {
 	public int comboScoreCount;
 	public float comboScoreTimeCount;
 	public float comboScoreRate;
+	public bool isActiveComboScore;
 
 	void Awake(){
 		instance = this;
@@ -24,11 +25,15 @@ public class ComboScoreManager : MonoBehaviour {
 
 	void Update ()
 	{
+		if (!isActiveComboScore)
+			return;
+		
 		comboScoreTimeCount += Time.deltaTime;
 
 		if (comboScoreTimeCount > comboScoreRate) {
 			comboScoreCount = 0;
 			comboScoreTimeCount = 0;
+			isActiveComboScore = false;
 		}
 
 		if (comboScoreCount >= 3) 
