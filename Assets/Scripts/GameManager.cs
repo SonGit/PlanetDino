@@ -2,32 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 
 	public GameObject gameOverUI;
+	public TextMeshProUGUI countDownText;
+	public GameObject objGameOverText;
+	public GameObject objAds;
+
+	private float countDownTime = 10;
+	private bool isCountdown;
+
 
 	void Awake ()
 	{
 		instance = this;
 	}
 
-	private IEnumerator WaitEndGame ()
-	{
-		yield return new WaitForSeconds (2);
-		gameOverUI.SetActive(true);
+	public void ShowGameOver ()
+	{	
+		StartCoroutine (WaitShowGameOver ());
 	}
 
-	public void EndGame ()
-	{	
-		StartCoroutine (WaitEndGame());
+	private IEnumerator WaitShowGameOver ()
+	{
+		yield return new WaitForSeconds (0.5f);
+		isCountdown = true;
+		gameOverUI.SetActive(true);
 	}
+		
 
 	public void Restart ()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
+
+	void Update ()
+	{
+		if (!isCountdown) 
+		{
+			return;
+		}
+
+		countDownTime -= Time.deltaTime;
+
+		if (countDownTime <= 0) {
+			isCountdown = false;
+			objAds.SetActive (false);
+			objGameOverText.SetActive (true);
+		}
+
+		countDownText.text = "" + (int)countDownTime;
+	}
+
+
 
 }

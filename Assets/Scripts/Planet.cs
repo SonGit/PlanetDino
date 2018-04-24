@@ -9,12 +9,9 @@ public class Planet : MonoBehaviour {
 		get { return myTransform.localScale.x; }
 	}
 
-	public static float Score
-	{
-		get { return Size * 63f; }
-	}
+	public static int Score = 0;
 
-	public static float highScore;
+	public static int highScore;
 
 	private static Transform myTransform;
 

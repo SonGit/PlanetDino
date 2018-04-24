@@ -1,9 +1,10 @@
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class ScoreUI : MonoBehaviour {
 
-	public Text text;
+	public TextMeshProUGUI text;
 
 	RectTransform rt;
 	Vector2 startPos;
@@ -16,7 +17,8 @@ public class ScoreUI : MonoBehaviour {
 
 	void Update ()
 	{
-		text.text = Planet.Score.ToString("0.#") + "m";
+		//text.text = Planet.Score.ToString("0.#") + "m";
+		text.text = "Score: " + Planet.Score.ToString();
 
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 	}

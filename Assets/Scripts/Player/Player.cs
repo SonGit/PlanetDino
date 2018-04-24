@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Player : Character {
 
+	public static Player instance;
+
 	public Transform playerMesh;
 
 	public GameObject dustParticle;
+	public int currentLife;
+	public GameObject objectImgAnchor;
+
+	private int maxLife = 3;
 
 	Rigidbody rb;
 
+	void Awake ()
+	{
+		instance = this;
+	}
+
 	// Use this for initialization
 	IEnumerator Start () {
+		currentLife = maxLife;
 		Application.targetFrameRate =30;
 		Init ();
 		rb = this.GetComponent<Rigidbody> ();
@@ -39,11 +51,44 @@ public class Player : Character {
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
 			RandomColor ();
+			Planet.Score += 1;
 		}
 		else 
 		{
+			Killed ();
 			enemy.Killed ();
 		}
+	}
+
+	private void Killed()
+	{
+		currentLife -= 1;
+
+		if (currentLife > 0)
+		{
+			// hit sound
+		}
+		else
+		{
+			// deathSound
+
+			ScreenShot.Instance.PlayScreenShot ();
+
+			DataController.Instance.SubmitNewPlayerScore (Planet.Score);
+
+			StartCoroutine (WaitDestroyPlayer());
+
+			GameManager.instance.ShowGameOver();
+
+			objectImgAnchor.SetActive (false);
+
+		}
+	}
+
+	private IEnumerator WaitDestroyPlayer ()
+	{
+		yield return new WaitForSeconds (0.05f);
+		Destroy ();
 	}
 
 

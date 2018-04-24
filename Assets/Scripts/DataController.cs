@@ -20,17 +20,17 @@ public class DataController : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		LoadPlayerProgress ();
+		DontDestroyOnLoad (gameObject);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		LoadPlayerProgress ();
 	}
 
-	public void SubmitNewPlayerScore(float newScore)
+	public void SubmitNewPlayerScore(int newScore)
 	{
-		if (newScore < Planet.highScore) {
+		if (newScore > Planet.highScore) {
 			Planet.highScore = newScore;
 			SavePlayerProgress ();
 		}
@@ -41,15 +41,15 @@ public class DataController : MonoBehaviour {
 		return Planet.highScore;
 	}
 
-	private void LoadPlayerProgress ()
+	public void LoadPlayerProgress ()
 	{
 		if (PlayerPrefs.HasKey ("HighestScore")) {
-			Planet.highScore = PlayerPrefs.GetFloat ("HighestScore");
+			Planet.highScore = PlayerPrefs.GetInt ("HighestScore");
 		}
 	}
 
 	private void SavePlayerProgress ()
 	{
-		PlayerPrefs.SetFloat ("HighestScore", Planet.highScore);
+		PlayerPrefs.SetInt ("HighestScore", Planet.highScore);
 	}
 }

@@ -1,12 +1,13 @@
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
-[RequireComponent(typeof(Text))]
 public class FinalScoreUI : MonoBehaviour {
 
-	void Start ()
+	void Update ()
 	{
-		GetComponent<Text>().text = "d = <i><b>" + DataController.Instance.GetHighestPlayerScore ().ToString ("0.#") + "</b>m</i>";
+		//GetComponent<Text>().text = "d = <i><b>" + DataController.Instance.GetHighestPlayerScore ().ToString ("0.#") + "</b>m</i>";
+		GetComponent<TextMeshProUGUI>().text = "" + DataController.Instance.GetHighestPlayerScore ().ToString();
 	}
 
 }
