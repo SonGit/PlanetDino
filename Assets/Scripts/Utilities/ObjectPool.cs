@@ -15,6 +15,7 @@ public class ObjectPool : MonoBehaviour {
 	GenericObject<Explosion> explosionGreen;
 	GenericObject<Explosion> explosionBlue;
 	GenericObject<Explosion> explosionBabyBlue;
+	GenericObject<AddScoreText> addScoreText;
 	public FakeGravity fakeGravity;
 
 	void Awake()
@@ -31,6 +32,7 @@ public class ObjectPool : MonoBehaviour {
 		explosionGreen = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionLightBlue,2);
 		explosionBlue = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBlue,2);
 		explosionBabyBlue= new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBabyBlue,2);
+		addScoreText= new GenericObject<AddScoreText>(ObjectFactory.PrefabType.ScoreAddText,1);
 	}
 		
 
@@ -67,5 +69,10 @@ public class ObjectPool : MonoBehaviour {
 	public Explosion GetExplosionBabyBlue()
 	{
 		return explosionBabyBlue.GetObj ();
+	}
+
+	public AddScoreText GetAddScoreText()
+	{
+		return addScoreText.GetObj ();
 	}
 }

@@ -8,6 +8,7 @@ public class ScoreUI : MonoBehaviour {
 	public TextMeshProUGUI text;
 	public TextMeshProUGUI comboText;
 	public TextMeshProUGUI comboTitle;
+	public TextMeshProUGUI scoreAddText;
 
 	RectTransform rt;
 	Vector2 startPos;
@@ -26,7 +27,10 @@ public class ScoreUI : MonoBehaviour {
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 
 		if (Input.GetKeyDown (KeyCode.A)) {
-			ComboEffect ();
+			AddScoreText ast = ObjectPool.instance.GetAddScoreText ();
+			ast.transform.parent = this.transform;
+			ast.Live ();
+			ast.Init (5);
 		}
 	}
 
@@ -58,6 +62,5 @@ public class ScoreUI : MonoBehaviour {
 
 		text.color = new Color32 ((byte)r,(byte)g,(byte)initColor.b,(byte)255);
 	}
-
-
+		
 }
