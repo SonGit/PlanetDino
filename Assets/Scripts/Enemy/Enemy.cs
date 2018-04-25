@@ -67,7 +67,7 @@ public class Enemy : Character {
 		
 	public void ExplosionEffect (Vector3 pos)
 	{
-		Explosion explosion = ObjectPool.instance.GetExplosion ();
+		Explosion explosion;
 
 
 		print (currentColor.name);
@@ -75,20 +75,20 @@ public class Enemy : Character {
 		switch (currentColor.name) {
 
 		case "Character_1":
-			explosion = ObjectPool.instance.GetExplosionGreen ();
+			explosion = ObjectPool.instance.GetExplosion1 ();
 			break;
 		case "Character_2":
-			explosion = ObjectPool.instance.GetExplosionBabyBlue ();
+			explosion = ObjectPool.instance.GetExplosion2 ();
 			break;
 		case "Character_3":
-			explosion = ObjectPool.instance.GetExplosionBlue ();
+			explosion = ObjectPool.instance.GetExplosion3 ();
 			break;
 		case "Character_4":
-			explosion = ObjectPool.instance.GetExplosionPink ();
+			explosion = ObjectPool.instance.GetExplosion4 ();
 			break;
 
 		default:
-			explosion = ObjectPool.instance.GetExplosion ();
+			explosion = ObjectPool.instance.GetExplosion4 ();
 			break;
 		}
 

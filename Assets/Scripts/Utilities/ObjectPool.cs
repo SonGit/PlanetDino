@@ -10,11 +10,11 @@ public class ObjectPool : MonoBehaviour {
 
 	GenericObject<Enemy> enemy;
 	GenericObject<AudioSource_RB> audioSource;
-	GenericObject<Explosion> explosion;
-	GenericObject<Explosion> explosionPink;
-	GenericObject<Explosion> explosionGreen;
-	GenericObject<Explosion> explosionBlue;
-	GenericObject<Explosion> explosionBabyBlue;
+
+	GenericObject<Explosion> explosion1;
+	GenericObject<Explosion> explosion2;
+	GenericObject<Explosion> explosion3;
+	GenericObject<Explosion> explosion4;
 	GenericObject<AddScoreText> addScoreText;
 	public FakeGravity fakeGravity;
 
@@ -27,11 +27,11 @@ public class ObjectPool : MonoBehaviour {
 	void Start () {
 		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,3);
 		audioSource = new GenericObject<AudioSource_RB>(ObjectFactory.PrefabType.AudioSource,1);
-		explosion = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion,2);
-		explosionPink = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionPink,2);
-		explosionGreen = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionLightBlue,2);
-		explosionBlue = new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBlue,2);
-		explosionBabyBlue= new GenericObject<Explosion>(ObjectFactory.PrefabType.ExplosionBabyBlue,2);
+
+		explosion1 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion1,2);
+		explosion2 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion2,2);
+		explosion3 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion3,2);
+		explosion4= new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion4,2);
 		addScoreText= new GenericObject<AddScoreText>(ObjectFactory.PrefabType.ScoreAddText,1);
 	}
 		
@@ -45,30 +45,25 @@ public class ObjectPool : MonoBehaviour {
 	{
 		return audioSource.GetObj ();
 	}
-
-	public Explosion GetExplosion()
+		
+	public Explosion GetExplosion1()
 	{
-		return explosion.GetObj ();
+		return explosion1.GetObj ();
 	}
 
-	public Explosion GetExplosionPink()
+	public Explosion GetExplosion2()
 	{
-		return explosionPink.GetObj ();
+		return explosion2.GetObj ();
 	}
 
-	public Explosion GetExplosionGreen()
+	public Explosion GetExplosion3()
 	{
-		return explosionGreen.GetObj ();
+		return explosion3.GetObj ();
 	}
 
-	public Explosion GetExplosionBlue()
+	public Explosion GetExplosion4()
 	{
-		return explosionBlue.GetObj ();
-	}
-
-	public Explosion GetExplosionBabyBlue()
-	{
-		return explosionBabyBlue.GetObj ();
+		return explosion4.GetObj ();
 	}
 
 	public AddScoreText GetAddScoreText()

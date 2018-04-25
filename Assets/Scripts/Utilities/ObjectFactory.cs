@@ -17,11 +17,10 @@ public class ObjectFactory: MonoBehaviour {
 		None,
 		Enemy,
 		AudioSource,
-		Explosion,
-		ExplosionLightBlue,
-		ExplosionPink,
-		ExplosionBlue,
-		ExplosionBabyBlue,
+		Explosion1,
+		Explosion2,
+		Explosion3,
+		Explosion4,
 		ScoreAddText
 	}
 
@@ -30,11 +29,10 @@ public class ObjectFactory: MonoBehaviour {
 		{ PrefabType.None, "" },
 		{ PrefabType.Enemy, "Prefabs/Enemy" },
 		{ PrefabType.AudioSource, "Prefabs/AudioSource" },
-		{ PrefabType.Explosion, "Prefabs/Explosion" },
-		{ PrefabType.ExplosionPink, "Prefabs/ExplosionPink" },
-		{ PrefabType.ExplosionLightBlue, "Prefabs/ExplosionLightBlue" },
-		{ PrefabType.ExplosionBlue, "Prefabs/ExplosionBlue" },
-		{ PrefabType.ExplosionBabyBlue, "Prefabs/ExplosionBabyBlue" },
+		{ PrefabType.Explosion1, "Prefabs/Explosion1" },
+		{ PrefabType.Explosion2, "Prefabs/Explosion2" },
+		{ PrefabType.Explosion3, "Prefabs/Explosion3" },
+		{ PrefabType.Explosion4, "Prefabs/Explosion4" },
 		{ PrefabType.ScoreAddText, "Prefabs/ScoreAddText" },
 	};
 
