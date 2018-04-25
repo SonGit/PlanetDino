@@ -40,4 +40,14 @@ public class Setting : MonoBehaviour {
 		SoundBtns [0].SetActive (true);
 		SoundBtns [1].SetActive (false);
 	}
+
+	public void Show()
+	{
+		gameObject.SetActive (true);
+	}
+
+	public void Hide()
+	{
+		gameObject.SetActive (false);
+	}
 }

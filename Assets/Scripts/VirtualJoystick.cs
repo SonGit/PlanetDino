@@ -45,7 +45,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 	}   
 
 	public void OnPointerUp(PointerEventData e) {
-		ImgAnchor.transform.position = new Vector3(-20,-20,-20);
+		ImgAnchor.transform.position = new Vector3(-20000,-20000,-20000);
 		_inputVector = Vector3.zero;
 		ImgJoystick.rectTransform.anchoredPosition = Vector3.zero;
 	}

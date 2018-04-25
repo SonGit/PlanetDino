@@ -10,4 +10,13 @@ public class GameOver : MonoBehaviour {
 		Planet.Score = 0;
 	}
 
+	public void Show()
+	{
+		gameObject.SetActive (true);
+	}
+
+	public void Hide()
+	{
+		gameObject.SetActive (false);
+	}
 }
