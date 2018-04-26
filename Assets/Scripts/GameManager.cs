@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour {
 		isCountdown = true;
 		gameOverUI.SetActive(true);
 	}
+
+	public void HideGameOver ()
+	{	
+		gameOverUI.SetActive(false);
+	}
 		
 
 	public void Restart ()
@@ -52,13 +57,17 @@ public class GameManager : MonoBehaviour {
 
 		if (countDownTime <= 0) {
 			isCountdown = false;
-			objAds.SetActive (false);
-			objGameOverText.SetActive (true);
+			ObjAdsUnActive ();
 		}
 
 		countDownText.text = "" + (int)countDownTime;
 	}
 
+	public void ObjAdsUnActive ()
+	{
+		objAds.SetActive (false);
+		objGameOverText.SetActive (true);
+	}
 
 
 }

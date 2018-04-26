@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : Character {
 
 	public static Player instance;
@@ -11,6 +12,8 @@ public class Player : Character {
 	public GameObject dustParticle;
 	public int currentLife;
 	public GameObject objectImgAnchor;
+	public static int Score = 0;
+	public static int highScore;
 
 	private int maxLife = 3;
 
@@ -24,6 +27,7 @@ public class Player : Character {
 	// Use this for initialization
 	IEnumerator Start () {
 		currentLife = maxLife;
+		highScore = Score;
 		Application.targetFrameRate =30;
 		Init ();
 		rb = this.GetComponent<Rigidbody> ();
@@ -51,7 +55,9 @@ public class Player : Character {
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
 			RandomColor ();
-			Planet.Score += 1;
+			ScoreUI.instance.ComboIsActive ();
+			Player.Score += ScoreUI.instance.comboCount;
+			ScoreUI.instance.AddScoreTextAnimation ();
 		}
 		else 
 		{
@@ -59,6 +65,7 @@ public class Player : Character {
 			enemy.Killed ();
 		}
 	}
+		
 
 	private void Killed()
 	{
@@ -67,6 +74,7 @@ public class Player : Character {
 		if (currentLife > 0)
 		{
 			// hit sound
+			ScoreUI.instance.comboCount = 0;
 		}
 		else
 		{
@@ -74,7 +82,7 @@ public class Player : Character {
 
 			ScreenShot.Instance.PlayScreenShot ();
 
-			DataController.Instance.SubmitNewPlayerScore (Planet.Score);
+			DataController.Instance.SubmitNewPlayerScore (Player.Score);
 
 			StartCoroutine (WaitDestroyPlayer());
 

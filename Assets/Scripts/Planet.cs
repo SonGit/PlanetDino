@@ -8,11 +8,7 @@ public class Planet : MonoBehaviour {
 	{
 		get { return myTransform.localScale.x; }
 	}
-
-	public static int Score = 0;
-
-	public static int highScore;
-
+		
 	private static Transform myTransform;
 
 	public float shrinkSpeed = .05f;
@@ -22,7 +18,6 @@ public class Planet : MonoBehaviour {
 	void Awake ()
 	{
 		myTransform = transform;
-		highScore = Score;
 	}
 
 	void Update ()

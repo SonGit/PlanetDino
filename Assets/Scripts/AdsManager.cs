@@ -6,8 +6,6 @@ using UnityEngine.Advertisements;
 
 public class AdsManager : MonoBehaviour {
 
-	public int score = 0;
-
 	private Button m_Button;
 	private string gameId = "1770286";
 	private string placementId = "rewardedVideo";
@@ -40,11 +38,11 @@ public class AdsManager : MonoBehaviour {
 		Advertisement.Show(placementId, options);
 	}
 
-	void HandleShowResult (ShowResult result)
+	private void HandleShowResult (ShowResult result)
 	{
 		if(result == ShowResult.Finished) {
 			Debug.Log("Video completed - Offer a reward to the player");
-			// Reward your player here.
+			Rewardplayer();
 
 		}else if(result == ShowResult.Skipped) {
 			Debug.LogWarning("Video was skipped - Do NOT reward the player");
@@ -52,6 +50,15 @@ public class AdsManager : MonoBehaviour {
 		}else if(result == ShowResult.Failed) {
 			Debug.LogError("Video failed to show");
 		}
+	}
+
+	private void Rewardplayer ()
+	{
+		Player.instance.currentLife ++;
+		Player.instance.Live ();
+		GameManager.instance.HideGameOver ();
+		GameManager.instance.ObjAdsUnActive ();
+		Player.instance.objectImgAnchor.SetActive (true);
 	}
 		
 }

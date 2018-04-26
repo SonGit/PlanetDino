@@ -30,26 +30,26 @@ public class DataController : MonoBehaviour {
 
 	public void SubmitNewPlayerScore(int newScore)
 	{
-		if (newScore > Planet.highScore) {
-			Planet.highScore = newScore;
+		if (newScore > Player.highScore) {
+			Player.highScore = newScore;
 			SavePlayerProgress ();
 		}
 	}
 
 	public float GetHighestPlayerScore ()
 	{
-		return Planet.highScore;
+		return Player.highScore;
 	}
 
 	public void LoadPlayerProgress ()
 	{
 		if (PlayerPrefs.HasKey ("HighestScore")) {
-			Planet.highScore = PlayerPrefs.GetInt ("HighestScore");
+			Player.highScore = PlayerPrefs.GetInt ("HighestScore");
 		}
 	}
 
 	private void SavePlayerProgress ()
 	{
-		PlayerPrefs.SetInt ("HighestScore", Planet.highScore);
+		PlayerPrefs.SetInt ("HighestScore", Player.highScore);
 	}
 }

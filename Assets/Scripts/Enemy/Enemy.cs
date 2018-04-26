@@ -53,8 +53,8 @@ public class Enemy : Character {
 
 	public void Killed()
 	{
-		Destroy ();
 		ExplosionEffect (transform.position);
+		StartCoroutine (WaitDestroyEnemy());
 	}
 
 	void OnCollisionEnter(Collision other) {
@@ -63,13 +63,6 @@ public class Enemy : Character {
 			EatEnemy (other.transform.GetComponent<Enemy> ());
 		}
 
-	}
-
-	public void ComboButton ()
-	{
-		ComboScoreManager.instance.isActiveComboScore = true;
-		ComboScoreManager.instance.comboScoreCount += 1;
-		ComboScoreManager.instance.comboScoreTimeCount = 0;
 	}
 		
 	public void ExplosionEffect (Vector3 pos)
@@ -108,7 +101,11 @@ public class Enemy : Character {
 	}
 
 
-
+	private IEnumerator WaitDestroyEnemy ()
+	{
+		yield return new WaitForSeconds (0.05f);
+		Destroy ();
+	}
 
 
 

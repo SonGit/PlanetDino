@@ -5,13 +5,25 @@ using System.Collections;
 
 public class ScoreUI : MonoBehaviour {
 
+	public static ScoreUI instance;
+
 	public TextMeshProUGUI text;
 	public TextMeshProUGUI comboText;
 	public TextMeshProUGUI comboTitle;
-	public TextMeshProUGUI scoreAddText;
+	public int comboCount;
+	public float comboScoreRate;
 
-	RectTransform rt;
-	Vector2 startPos;
+
+
+	private float comboTimeCount;
+	private bool isActiveCombo;
+	private bool isComboEffect;
+	private RectTransform rt;
+	private Vector2 startPos;
+
+	void Awake(){
+		instance = this;
+	}
 
 	void Start ()
 	{
@@ -21,31 +33,25 @@ public class ScoreUI : MonoBehaviour {
 
 	void Update ()
 	{
-		//text.text = Planet.Score.ToString("0.#") + "m";
-		text.text = Planet.Score.ToString();
+		text.text = Player.Score.ToString();
 
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 
-		if (Input.GetKeyDown (KeyCode.A)) {
-			AddScoreText ast = ObjectPool.instance.GetAddScoreText ();
-			ast.transform.parent = this.transform;
-			ast.Live ();
-			ast.Init (5);
-		}
-	}
+		ComboUpdate ();
 
-	int i = 1;
+		if (Input.GetKeyDown (KeyCode.A))
+			AddScoreTextAnimation ();
+	}
+		
 	float duration = .25f;
 
-	public void ComboEffect()
+	public void ComboEffect(int currentCombo)
 	{
-		i++;
-
 		iTween.ShakeScale(comboText.gameObject,iTween.Hash("x",.2f,"y",.2f,"time",duration));
 		iTween.ShakeScale(comboTitle.gameObject,iTween.Hash("x",.2f,"y",.2f,"time",duration));
-		comboText.text = i + "x"; 
+		comboText.text = currentCombo + "x"; 
 
-		Redder(comboText,i);
+		Redder(comboText,currentCombo);
 	}
 
 	float magnitude = 25;
@@ -61,6 +67,54 @@ public class ScoreUI : MonoBehaviour {
 			g = 0;
 
 		text.color = new Color32 ((byte)r,(byte)g,(byte)initColor.b,(byte)255);
+	}
+
+	private void ComboUpdate ()
+	{
+		if (!isActiveCombo)
+			return;
+
+		comboTimeCount += Time.deltaTime;
+
+		if (comboTimeCount > comboScoreRate) {
+			comboCount = 0;
+			comboTimeCount = 0;
+			isActiveCombo = false;
+			comboTitle.gameObject.SetActive (false);
+			comboText.gameObject.SetActive (false);
+		}
+
+		if (comboCount >= 2) 
+		{
+			if (isComboEffect) 
+			{
+				ComboEffect (comboCount);
+				isComboEffect = false;
+			}
+			comboTitle.gameObject.SetActive (true);
+			comboText.gameObject.SetActive (true);
+		} 
+		else 
+		{
+			comboTitle.gameObject.SetActive (false);
+			comboText.gameObject.SetActive (false);
+		}
+	}
+
+	public void ComboIsActive ()
+	{
+		isActiveCombo = true;
+		isComboEffect = true;
+		comboCount += 1;
+		comboTimeCount = 0;
+	}
+
+	public void AddScoreTextAnimation ()
+	{
+		AddScoreText ast = ObjectPool.instance.GetAddScoreText ();
+		ast.transform.parent = this.transform;
+		ast.Live ();
+		ast.Init (comboCount);
 	}
 		
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using System.Threading;
 
 public class ScreenShot : MonoBehaviour {
 
@@ -32,6 +33,7 @@ public class ScreenShot : MonoBehaviour {
 
 	private IEnumerator ScreenShotActive ()
 	{
+		
 		// wait for graphics to render
 		yield return new WaitForEndOfFrame();
 
@@ -39,24 +41,48 @@ public class ScreenShot : MonoBehaviour {
 
 		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
 		// create the texture
-		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height);//,TextureFormat.RGB24,true);
+		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
 		// put buffer into texture
 		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
+
+
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
 
 		// apply
 		screenTexture.Apply();
 
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
+
 		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
 		shareImage.GetComponent<Image>().sprite = sprite;
 
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
+			
 		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
 		byte[] dataToSave = screenTexture.EncodeToPNG();
+
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
+
 
 		new System.Threading.Thread(() =>
 			{
 				System.Threading.Thread.Sleep(100);
 				File.WriteAllBytes(destination, dataToSave);
 			}).Start();
+
+	
 	}
 
 	public void PlayScreenShot ()

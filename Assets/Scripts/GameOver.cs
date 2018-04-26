@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour {
 	{
 		GameManager.instance.Restart();
 		GetComponent<RectTransform>().localScale = Vector3.one * Planet.Size;
-		Planet.Score = 0;
+		Player.Score = 0;
 	}
 
 	public void Show()

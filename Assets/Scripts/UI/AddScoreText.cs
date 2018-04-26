@@ -48,7 +48,8 @@ public class AddScoreText : Cacheable {
 	{
 		if(textMesh == null)
 		textMesh = this.GetComponent<TextMeshProUGUI> ();
-		
+
+		gameObject.transform.localScale = Vector3.one;
 		gameObject.transform.localPosition = new Vector3 (-12,-120,0);
 		iTween.MoveBy (gameObject, iTween.Hash ("y", 80, "time", 1.75f,"islocal",true));
 
