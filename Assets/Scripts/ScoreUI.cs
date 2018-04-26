@@ -31,7 +31,10 @@ public class ScoreUI : MonoBehaviour {
 	{
 		rt = GetComponent<RectTransform>();
 		startPos = rt.anchoredPosition;
+
+
     }
+
 
 	void Update ()
 	{
