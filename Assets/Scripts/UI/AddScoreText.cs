@@ -19,7 +19,7 @@ public class AddScoreText : Cacheable {
 		if (!runnning)
 			return;
 		
-		textMesh.alpha -= 1.5f * Time.deltaTime;
+		textMesh.alpha -= 2f * Time.deltaTime;
 
 		if (textMesh.alpha < 0) {
 			runnning = false;
@@ -44,14 +44,14 @@ public class AddScoreText : Cacheable {
 	
 	}
 
-	public void Init(int score)
+	public void Init(int score,Transform target)
 	{
 		if(textMesh == null)
 		textMesh = this.GetComponent<TextMeshProUGUI> ();
 
 		gameObject.transform.localScale = Vector3.one;
-		gameObject.transform.localPosition = new Vector3 (-12,-120,0);
-		iTween.MoveBy (gameObject, iTween.Hash ("y", 80, "time", 1.75f,"islocal",true));
+
+		iTween.MoveTo (gameObject, iTween.Hash ("position", target.position, "time", 1.75f));
 
 		textMesh.text = "+" + score;
 		textMesh.alpha = 1;

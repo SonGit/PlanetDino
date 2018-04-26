@@ -10,6 +10,8 @@ public class ScoreUI : MonoBehaviour {
 	public TextMeshProUGUI text;
 	public TextMeshProUGUI comboText;
 	public TextMeshProUGUI comboTitle;
+	public TextMeshProUGUI addScoreAnchor;
+
 	public int comboCount;
 	public float comboScoreRate;
 
@@ -113,8 +115,10 @@ public class ScoreUI : MonoBehaviour {
 	{
 		AddScoreText ast = ObjectPool.instance.GetAddScoreText ();
 		ast.transform.parent = this.transform;
+		ast.transform.position = addScoreAnchor.transform.position;
 		ast.Live ();
-		ast.Init (comboCount);
+		ast.Init (comboCount,text.transform);
+
 	}
 		
 }

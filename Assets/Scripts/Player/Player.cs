@@ -79,16 +79,19 @@ public class Player : Character {
 		else
 		{
 			// deathSound
+			if (DataController.Instance != null) {
 
-			ScreenShot.Instance.PlayScreenShot ();
+				ScreenShot.Instance.PlayScreenShot ();
 
-			DataController.Instance.SubmitNewPlayerScore (Player.Score);
+				DataController.Instance.SubmitNewPlayerScore (Player.Score);
 
-			StartCoroutine (WaitDestroyPlayer());
+				StartCoroutine (WaitDestroyPlayer());
 
-			GameManager.instance.ShowGameOver();
+				GameManager.instance.ShowGameOver();
 
-			objectImgAnchor.SetActive (false);
+				objectImgAnchor.SetActive (false);
+			}
+
 
 		}
 	}
