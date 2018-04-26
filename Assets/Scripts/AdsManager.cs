@@ -59,6 +59,7 @@ public class AdsManager : MonoBehaviour {
 		GameManager.instance.HideGameOver ();
 		GameManager.instance.ObjAdsUnActive ();
 		Player.instance.objectImgAnchor.SetActive (true);
+		Player.instance.PlayerUndying ();
 	}
 		
 }

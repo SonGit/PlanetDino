@@ -7,15 +7,18 @@ public class Player : Character {
 
 	public static Player instance;
 
-	public Transform playerMesh;
 
 	public GameObject dustParticle;
 	public int currentLife;
 	public GameObject objectImgAnchor;
 	public static int Score = 0;
 	public static int highScore;
+	[HideInInspector]
+	public bool isRendererPlayer;
 
+	private float RendererPlayerTimeCount;
 	private int maxLife = 3;
+
 
 	Rigidbody rb;
 
@@ -25,22 +28,38 @@ public class Player : Character {
 	}
 
 	// Use this for initialization
-	IEnumerator Start () {
+	void Start () {
 		currentLife = maxLife;
 		highScore = Score;
-		Application.targetFrameRate =30;
+		Application.targetFrameRate = 30;
 		Init ();
 		rb = this.GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		rb.velocity = Vector3.zero;;
 
 		rb.isKinematic = false;
-		yield return new WaitForSeconds (.25f);
+		StartCoroutine (AddScorePerSecond());
 	}
-	
+
+
+	IEnumerator AddScorePerSecond()
+	{
+		while (true) {
+			Score++;
+			yield return new WaitForSeconds (1);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
+
 		rb.velocity = Vector3.zero;
+
+		if (!isRendererPlayer) {
+			return;
+		}
+
+		RendererPlayerTimeCount += Time.deltaTime;
 	}
 
 	void OnCollisionEnter(Collision other) {
@@ -49,37 +68,46 @@ public class Player : Character {
 			OnHitEnemy (other.transform.GetComponent<Enemy> ());
 		}
 	}
-		
+
 	private void OnHitEnemy(Enemy enemy)
 	{
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
 			RandomColor ();
-			ScoreUI.instance.ComboIsActive ();
-			Player.Score += ScoreUI.instance.comboCount;
-			ScoreUI.instance.AddScoreTextAnimation ();
+
+			if (!isRendererPlayer) 
+			{
+				ScoreUI.instance.ComboIsActive ();
+				Player.Score += ScoreUI.instance.comboCount;
+				ScoreUI.instance.AddScoreTextAnimation ();
+			}
+
 		}
 		else 
 		{
 			Killed ();
 			enemy.Killed ();
+
 		}
 	}
-		
+
 
 	private void Killed()
 	{
-		currentLife -= 1;
+		if (!isRendererPlayer) 
+		{
+			currentLife -= 1;
 
-		if (currentLife > 0)
-		{
-			// hit sound
-			ScoreUI.instance.comboCount = 0;
-		}
-		else
-		{
-			// deathSound
-			if (DataController.Instance != null) {
+			if (currentLife > 0)
+			{
+				// hit sound
+				ScoreUI.instance.comboCount = 0;
+				PlayerUndying ();
+
+			}
+			else
+			{
+				// deathSound
 
 				ScreenShot.Instance.PlayScreenShot ();
 
@@ -90,10 +118,10 @@ public class Player : Character {
 				GameManager.instance.ShowGameOver();
 
 				objectImgAnchor.SetActive (false);
+
 			}
-
-
 		}
+
 	}
 
 	private IEnumerator WaitDestroyPlayer ()
@@ -102,6 +130,63 @@ public class Player : Character {
 		Destroy ();
 	}
 
+	private IEnumerator RendererPlayer()
+	{
+		isRendererPlayer = true;
+		while (isRendererPlayer && RendererPlayerTimeCount < 2.9f) {
+			foreach (Renderer renderer in playerRenderers) 
+			{
+				yield return new WaitForSeconds (0.2f);
+				renderer.gameObject.SetActive (false);
+				yield return new WaitForSeconds (0.2f);
+				renderer.gameObject.SetActive (true);
+			}
+		}
+		RendererPlayerTimeCount = 0;
+		isRendererPlayer = false;
+
+	}
+
+	public void PlayerUndying ()
+	{
+		StartCoroutine (RendererPlayer());
+	}
+
+
+	public void ExplosionEffect (Vector3 pos)
+	{
+		Explosion explosion;
+
+
+		print (currentColor.name);
+
+		switch (currentColor.name) {
+
+		case "Character_1":
+			explosion = ObjectPool.instance.GetExplosion1 ();
+			break;
+		case "Character_2":
+			explosion = ObjectPool.instance.GetExplosion2 ();
+			break;
+		case "Character_3":
+			explosion = ObjectPool.instance.GetExplosion3 ();
+			break;
+		case "Character_4":
+			explosion = ObjectPool.instance.GetExplosion4 ();
+			break;
+
+		default:
+			explosion = ObjectPool.instance.GetExplosion4 ();
+			break;
+		}
+
+		if (explosion != null) {
+			explosion.transform.position = pos;
+			explosion.Live ();
+			explosion.Play ();
+		}
+
+	}
 
 
 }

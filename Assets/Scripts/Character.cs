@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Character : Cacheable {
 	
-	private Renderer[] playerRenderers;
+	protected Renderer[] playerRenderers;
 
 	public Texture currentColor;
 

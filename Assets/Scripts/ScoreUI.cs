@@ -16,7 +16,7 @@ public class ScoreUI : MonoBehaviour {
 	public float comboScoreRate;
 
 
-
+	private float increaseScorePerSecond;
 	private float comboTimeCount;
 	private bool isActiveCombo;
 	private bool isComboEffect;
@@ -35,14 +35,14 @@ public class ScoreUI : MonoBehaviour {
 
 	void Update ()
 	{
+		increaseScorePerSecond += Time.deltaTime;
+
 		text.text = Player.Score.ToString();
 
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 
 		ComboUpdate ();
 
-		if (Input.GetKeyDown (KeyCode.A))
-			AddScoreTextAnimation ();
 	}
 		
 	float duration = .25f;

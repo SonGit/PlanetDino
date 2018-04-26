@@ -25,7 +25,7 @@ public class ObjectPool : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,3);
+		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,20);
 		audioSource = new GenericObject<AudioSource_RB>(ObjectFactory.PrefabType.AudioSource,1);
 
 		explosion1 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion1,2);
