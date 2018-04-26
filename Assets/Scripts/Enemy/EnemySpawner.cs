@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartSpawn ();
+		InvokeRepeating ("CheckTotalEnemy",1,1);
 	}
 
 	public void StartSpawn ()
@@ -33,18 +34,28 @@ public class EnemySpawner : MonoBehaviour {
 		isSpawn = false;
 	}
 
+	int totalEnemy = 0;
+
 	IEnumerator Spawn()
 	{
 		while (isSpawn) {
 			yield return new WaitForSeconds (rate);
-			Enemy enemyGo = ObjectPool.instance.GetEnemy ();
-			enemyGo.Live ();
-			Vector3 pos = RandomPoint ();
-			enemyGo.transform.position = pos;
-			Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();
-			rb.velocity = Vector3.zero;
-			GameManager.instance.enemyList.Add (enemyGo);
+			if (totalEnemy < 23) {
+				Enemy enemyGo = ObjectPool.instance.GetEnemy ();
+				enemyGo.Live ();
+				Vector3 pos = RandomPoint ();
+				enemyGo.transform.position = pos;
+				Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();
+				rb.velocity = Vector3.zero;
+				GameManager.instance.enemyList.Add (enemyGo);
+			}
 		}
+	}
+
+	void CheckTotalEnemy()
+	{
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		totalEnemy = enemies.Length;
 	}
 
 	float distanceToCenter;

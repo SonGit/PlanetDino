@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-	[HideInInspector]
-	public int randNum;
 
 	public float speed;
 	public Transform ExplosionEffectPos;
-
-
+	public GameObject mesh;
 
 	// Use this for initialization
 	void Start () {
-		Init ();
+		Destroy ();
 	}
 		
 	protected override void Init()
 	{
 		base.Init ();
-		randNum = Random.Range (-9999,9999);
 		Rigidbody rb = this.GetComponent<Rigidbody> ();
 		rb.velocity = Vector3.zero;;
 	}
@@ -27,8 +23,6 @@ public class Enemy : Character {
 	// Update is called once per frame
 	void Update () {
 		MoveForward ();
-
-
 	}
 
 	private void RandomAngle()
@@ -38,17 +32,7 @@ public class Enemy : Character {
 
 	private void MoveForward()
 	{
-		transform.position += transform.forward * Time.deltaTime * speed;
-	}
-		
-	private void EatEnemy(Enemy enemy)
-	{
-		if (enemy.randNum < this.randNum) {
-			Destroy ();
-
-		} else {
-			RandomColor ();
-		}
+		transform.position += mesh.transform.forward * Time.deltaTime * speed;
 	}
 
 	public void Killed()
@@ -60,7 +44,17 @@ public class Enemy : Character {
 	void OnCollisionEnter(Collision other) {
 
 		if (CheckIfAEnemy(other.transform)) {
-			EatEnemy (other.transform.GetComponent<Enemy> ());
+			StartCoroutine (TurnAround());
+		}
+
+	}
+
+	IEnumerator TurnAround()
+	{
+		float targetRot = mesh.transform.localEulerAngles.y + 180;
+		while (mesh.transform.localEulerAngles.y != targetRot) {
+			mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation,Quaternion.Euler(0,targetRot,0), Time.deltaTime * .5f);
+			yield return new WaitForEndOfFrame ();
 		}
 
 	}
