@@ -16,7 +16,6 @@ public class ObjectPool : MonoBehaviour {
 	GenericObject<Explosion> explosion3;
 	GenericObject<Explosion> explosion4;
 	GenericObject<AddScoreText> addScoreText;
-	public FakeGravity fakeGravity;
 
 	void Awake()
 	{

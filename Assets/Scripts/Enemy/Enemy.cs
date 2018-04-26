@@ -69,9 +69,6 @@ public class Enemy : Character {
 	{
 		Explosion explosion;
 
-
-		print (currentColor.name);
-
 		switch (currentColor.name) {
 
 		case "Character_1":

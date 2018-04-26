@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : Cacheable {
+
+	public GameObject rendererPlace;
 	
 	protected Renderer[] playerRenderers;
 
@@ -12,7 +14,7 @@ public abstract class Character : Cacheable {
 
 	protected virtual void Init()
 	{
-		playerRenderers = this.GetComponentsInChildren<Renderer> ();
+		playerRenderers = rendererPlace.GetComponentsInChildren<Renderer> ();
 
 		if(currentColor == null)
 			currentColor = playerRenderers[0].material.mainTexture;
