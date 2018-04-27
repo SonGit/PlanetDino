@@ -1038,6 +1038,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 963778894}
   m_Script: {fileID: 11500000, guid: cf9bd013ed2f15644b232877c647417b, type: 3}
+--- !u!1 &495330994 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1817725601248352, guid: 29169aa189bd69c48a38eb9a836765d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 963778894}
 --- !u!1001 &533058635
 Prefab:
   m_ObjectHideFlags: 0
@@ -6326,7 +6331,9 @@ MonoBehaviour:
   countDownText: {fileID: 904323632}
   objGameOverText: {fileID: 1215949543}
   objAds: {fileID: 1303396774}
-  containerBtns: []
+  containerBtns:
+  - {fileID: 2105295552}
+  - {fileID: 495330994}
   gamePlayUI: {fileID: 1901598375}
   enemyList: []
 --- !u!4 &1263120869
@@ -7595,6 +7602,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 963778894}
   m_Script: {fileID: 11500000, guid: 5b1078256d6145e4b828012e3b808b3a, type: 3}
+--- !u!1 &2105295552 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1998665227635760, guid: 29169aa189bd69c48a38eb9a836765d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 963778894}
 --- !u!1 &2114929659
 GameObject:
   m_ObjectHideFlags: 0
