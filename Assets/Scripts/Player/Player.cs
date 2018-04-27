@@ -10,7 +10,6 @@ public class Player : Character {
 
 	public GameObject dustParticle;
 	public int currentLife;
-	public GameObject objectImgAnchor;
 	public static int Score = 0;
 	public static int highScore;
 	[HideInInspector]
@@ -67,6 +66,7 @@ public class Player : Character {
 		if (CheckIfAEnemy(other.transform)) {
 			OnHitEnemy (other.transform.GetComponent<Enemy> ());
 		}
+
 	}
 
 	private void OnHitEnemy(Enemy enemy)
@@ -96,7 +96,7 @@ public class Player : Character {
 	{
 		if (!isRendererPlayer) 
 		{
-			currentLife -= 1;
+			currentLife -= 0;
 
 			if (currentLife > 0)
 			{
@@ -117,8 +117,7 @@ public class Player : Character {
 
 				GameManager.instance.ShowGameOver();
 
-				objectImgAnchor.SetActive (false);
-
+				EnemySpawner.instance.PauseSpawn ();
 			}
 		}
 

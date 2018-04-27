@@ -13,10 +13,17 @@ public class GameManager : MonoBehaviour {
 	public TextMeshProUGUI countDownText;
 	public GameObject objGameOverText;
 	public GameObject objAds;
+	public GameObject[] containerBtns;
+	public GameObject gamePlayUI;
+	public List<Enemy> enemyList;
 
 	private float countDownTime = 10;
 	private bool isCountdown;
 
+	void Start ()
+	{
+		enemyList = new List<Enemy> ();
+	}
 
 	void Awake ()
 	{
@@ -33,6 +40,8 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 		isCountdown = true;
 		gameOverUI.SetActive(true);
+		gamePlayUI.SetActive (false);
+		KillAllEnemy ();
 	}
 
 	public void HideGameOver ()
@@ -47,6 +56,18 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update ()
+	{
+		CountDown ();
+
+	}
+
+	public void ObjAdsUnActive ()
+	{
+		objAds.SetActive (false);
+		objGameOverText.SetActive (true);
+	}
+
+	public void CountDown ()
 	{
 		if (!isCountdown) 
 		{
@@ -63,11 +84,27 @@ public class GameManager : MonoBehaviour {
 		countDownText.text = "" + (int)countDownTime;
 	}
 
-	public void ObjAdsUnActive ()
+
+	public void PauseBtn ()
 	{
-		objAds.SetActive (false);
-		objGameOverText.SetActive (true);
+		Time.timeScale = 0;
+		containerBtns [0].SetActive (false);
+		containerBtns [1].SetActive (true);
 	}
 
+	public void ResumeBtn ()
+	{
+		Time.timeScale = 1;
+		containerBtns [0].SetActive (true);
+		containerBtns [1].SetActive (false);
+	}
+
+	private void KillAllEnemy ()
+	{
+		foreach (Enemy enemy in enemyList) 
+		{
+			enemy.Destroy ();
+		}
+	}
 
 }

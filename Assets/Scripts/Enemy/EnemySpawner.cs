@@ -4,19 +4,38 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+	public static EnemySpawner instance;
+
 	public float rate;
 	public Transform anchor;
 	public Transform center;
+	[HideInInspector]
+	public bool isSpawn;
+
+	void Awake ()
+	{
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
+		StartSpawn ();
+	}
 
+	public void StartSpawn ()
+	{
+		isSpawn = true;
 		StartCoroutine (Spawn());
+	}
+
+	public void PauseSpawn ()
+	{
+		isSpawn = false;
 	}
 
 	IEnumerator Spawn()
 	{
-		while (true) {
+		while (isSpawn) {
 			yield return new WaitForSeconds (rate);
 			Enemy enemyGo = ObjectPool.instance.GetEnemy ();
 			enemyGo.Live ();
@@ -24,6 +43,7 @@ public class EnemySpawner : MonoBehaviour {
 			enemyGo.transform.position = pos;
 			Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();
 			rb.velocity = Vector3.zero;
+			GameManager.instance.enemyList.Add (enemyGo);
 		}
 	}
 

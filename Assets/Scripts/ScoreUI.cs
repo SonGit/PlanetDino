@@ -29,11 +29,10 @@ public class ScoreUI : MonoBehaviour {
 
 	void Start ()
 	{
-		rt = GetComponent<RectTransform>();
+		rt = GetComponent<RectTransform> ();
 		startPos = rt.anchoredPosition;
 
-
-    }
+	}
 
 
 	void Update ()
@@ -45,7 +44,9 @@ public class ScoreUI : MonoBehaviour {
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 
 		ComboUpdate ();
-
+			if (Input.GetKeyDown (KeyCode.A))
+				AddScoreTextAnimation ();
+		
 	}
 		
 	float duration = .25f;
