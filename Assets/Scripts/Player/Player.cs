@@ -71,6 +71,13 @@ public class Player : Character {
 
 	}
 
+	void OnTriggerEnter(Collider other) {
+
+		if (CheckIfATree(other.transform)) {
+			OnHitTree ();
+		}
+	}
+
 	private void OnHitEnemy(Enemy enemy)
 	{
 		if (enemy.currentColor.name == currentColor.name) {
@@ -93,6 +100,11 @@ public class Player : Character {
 		}
 	}
 
+	private void OnHitTree()
+	{
+		Player.Score -= 1;
+		ScoreUI.instance.SubtractScoreTextAnimation ();
+	}
 
 	private void Killed()
 	{

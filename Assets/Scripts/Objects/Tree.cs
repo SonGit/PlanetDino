@@ -8,13 +8,13 @@ public class Tree : MonoBehaviour {
 
 	private float startScale;
 
-	Transform t;
+	MeshRenderer mesh;
 
 	// Use this for initialization
 	void Start () {
 		planetScale = transform.parent.parent.transform;
 		startScale = planetScale.localScale.x;
-		t = transform;
+		mesh = this.GetComponentInChildren<MeshRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class Tree : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 
-		iTween.ShakePosition(gameObject,iTween.Hash("x",0.2f,"time",1.0f));
+		iTween.ShakePosition(mesh.gameObject,iTween.Hash("x",0.2f,"time",1.0f));
 
 	}
 }

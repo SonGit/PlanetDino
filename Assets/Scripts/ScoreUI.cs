@@ -123,6 +123,15 @@ public class ScoreUI : MonoBehaviour {
 
 	}
 
+	public void SubtractScoreTextAnimation ()
+	{
+		AddScoreText ast = ObjectPool.instance.GetAddScoreText ();
+		ast.transform.parent = this.transform;
+		ast.transform.position = addScoreAnchor.transform.position;
+		ast.Live ();
+		ast.Init (-1,text.transform);
+	}
+
 	void comboAlpha (){
 		if (comboCount > 0) {
 			float a = 1 -  ((comboTimeCount * 1) / comboRate);

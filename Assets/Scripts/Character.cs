@@ -71,4 +71,15 @@ public abstract class Character : Cacheable {
 
 		return false;
 	}
+
+	Tree treeCache;
+	protected bool CheckIfATree(Transform targetTransform)
+	{
+		treeCache = targetTransform.GetComponent<Tree> ();
+
+		if (treeCache != null)
+			return true;
+
+		return false;
+	}
 }

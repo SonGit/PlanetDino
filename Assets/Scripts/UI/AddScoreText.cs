@@ -53,7 +53,12 @@ public class AddScoreText : Cacheable {
 
 		iTween.MoveTo (gameObject, iTween.Hash ("position", target.position, "time", 1.75f));
 
-		textMesh.text = "+" + score;
+		if (score < 0) {
+			textMesh.text = score + "";
+		} else {
+			textMesh.text = "+" + score;
+		}
+
 		textMesh.alpha = 1;
 
 		runnning = true;
