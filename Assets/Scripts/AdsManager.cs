@@ -55,12 +55,13 @@ public class AdsManager : MonoBehaviour {
 	private void Rewardplayer ()
 	{
 		Player.instance.currentLife ++;
-		Player.instance.Live ();
 		GameManager.instance.HideGameOver ();
 		GameManager.instance.ObjAdsUnActive ();
 		GameManager.instance.gamePlayUI.SetActive (true);
 		Player.instance.PlayerUndying ();
 		EnemySpawner.instance.StartSpawn ();
+		PlayerController_RB.instance.speed = PlayerController_RB.instance.startspeed;
+		Player.instance.isAddScorePerSecond = true;
 	}
 		
 }

@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour {
 
 	private IEnumerator WaitShowGameOver ()
 	{
+		gamePlayUI.SetActive (false);
 		yield return new WaitForSeconds (0.5f);
 		isCountdown = true;
 		gameOverUI.SetActive(true);
-		gamePlayUI.SetActive (false);
 		KillAllEnemy ();
 	}
 

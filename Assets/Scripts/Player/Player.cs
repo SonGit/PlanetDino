@@ -14,6 +14,7 @@ public class Player : Character {
 	public static int highScore;
 	[HideInInspector]
 	public bool isRendererPlayer;
+	public bool isAddScorePerSecond;
 
 	private float RendererPlayerTimeCount;
 	private int maxLife = 3;
@@ -43,7 +44,8 @@ public class Player : Character {
 
 	IEnumerator AddScorePerSecond()
 	{
-		while (true) {
+		isAddScorePerSecond = true;
+		while (isAddScorePerSecond) {
 			Score++;
 			yield return new WaitForSeconds (1);
 		}
@@ -96,7 +98,7 @@ public class Player : Character {
 	{
 		if (!isRendererPlayer) 
 		{
-			currentLife -= 0;
+			currentLife -= 1;
 
 			if (currentLife > 0)
 			{
@@ -118,6 +120,10 @@ public class Player : Character {
 				GameManager.instance.ShowGameOver();
 
 				EnemySpawner.instance.PauseSpawn ();
+
+				PlayerController_RB.instance.speed = 0f;
+
+				isAddScorePerSecond = false;
 			}
 		}
 
@@ -125,8 +131,12 @@ public class Player : Character {
 
 	private IEnumerator WaitDestroyPlayer ()
 	{
-		yield return new WaitForSeconds (0.05f);
-		Destroy ();
+		
+		foreach (Renderer renderer in playerRenderers) 
+		{
+			yield return new WaitForSeconds (0.05f);
+			renderer.gameObject.SetActive (false);
+		}
 	}
 
 	private IEnumerator RendererPlayer()
@@ -149,42 +159,6 @@ public class Player : Character {
 	public void PlayerUndying ()
 	{
 		StartCoroutine (RendererPlayer());
-	}
-
-
-	public void ExplosionEffect (Vector3 pos)
-	{
-		Explosion explosion;
-
-
-		print (currentColor.name);
-
-		switch (currentColor.name) {
-
-		case "Character_1":
-			explosion = ObjectPool.instance.GetExplosion1 ();
-			break;
-		case "Character_2":
-			explosion = ObjectPool.instance.GetExplosion2 ();
-			break;
-		case "Character_3":
-			explosion = ObjectPool.instance.GetExplosion3 ();
-			break;
-		case "Character_4":
-			explosion = ObjectPool.instance.GetExplosion4 ();
-			break;
-
-		default:
-			explosion = ObjectPool.instance.GetExplosion4 ();
-			break;
-		}
-
-		if (explosion != null) {
-			explosion.transform.position = pos;
-			explosion.Live ();
-			explosion.Play ();
-		}
-
 	}
 
 

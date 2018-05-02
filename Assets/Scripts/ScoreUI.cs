@@ -13,11 +13,9 @@ public class ScoreUI : MonoBehaviour {
 	public TextMeshProUGUI addScoreAnchor;
 
 	public int comboCount;
-	public float comboScoreRate;
+	public float comboRate;
+	public float comboTimeCount;
 
-
-	private float increaseScorePerSecond;
-	private float comboTimeCount;
 	private bool isActiveCombo;
 	private bool isComboEffect;
 	private RectTransform rt;
@@ -32,21 +30,21 @@ public class ScoreUI : MonoBehaviour {
 		rt = GetComponent<RectTransform> ();
 		startPos = rt.anchoredPosition;
 
+		comboTitle = comboTitle.GetComponent<TextMeshProUGUI> ();
+		comboText = comboText.GetComponent<TextMeshProUGUI> ();
 	}
 
 
 	void Update ()
 	{
-		increaseScorePerSecond += Time.deltaTime;
 
 		text.text = Player.Score.ToString();
 
 		rt.anchoredPosition = Vector2.Lerp(Vector2.zero, startPos, Planet.Size);
 
 		ComboUpdate ();
-			if (Input.GetKeyDown (KeyCode.A))
-				AddScoreTextAnimation ();
-		
+			
+		comboAlpha ();
 	}
 		
 	float duration = .25f;
@@ -55,6 +53,7 @@ public class ScoreUI : MonoBehaviour {
 	{
 		iTween.ShakeScale(comboText.gameObject,iTween.Hash("x",.2f,"y",.2f,"time",duration));
 		iTween.ShakeScale(comboTitle.gameObject,iTween.Hash("x",.2f,"y",.2f,"time",duration));
+
 		comboText.text = currentCombo + "x"; 
 
 		Redder(comboText,currentCombo);
@@ -82,14 +81,12 @@ public class ScoreUI : MonoBehaviour {
 
 		comboTimeCount += Time.deltaTime;
 
-		if (comboTimeCount > comboScoreRate) {
+		if (comboTimeCount > comboRate) {
 			comboCount = 0;
 			comboTimeCount = 0;
 			isActiveCombo = false;
-			comboTitle.gameObject.SetActive (false);
-			comboText.gameObject.SetActive (false);
 		}
-
+			
 		if (comboCount >= 2) 
 		{
 			if (isComboEffect) 
@@ -97,6 +94,7 @@ public class ScoreUI : MonoBehaviour {
 				ComboEffect (comboCount);
 				isComboEffect = false;
 			}
+
 			comboTitle.gameObject.SetActive (true);
 			comboText.gameObject.SetActive (true);
 		} 
@@ -124,5 +122,15 @@ public class ScoreUI : MonoBehaviour {
 		ast.Init (comboCount,text.transform);
 
 	}
+
+	void comboAlpha (){
+		if (comboCount > 0) {
+			float a = 1 -  ((comboTimeCount * 1) / comboRate);
+			comboText.alpha = a;
+			comboTitle.alpha = a;
+		}
+	}
+
+
 		
 }

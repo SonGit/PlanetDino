@@ -4,8 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController_RB : MonoBehaviour {
 
+	public static PlayerController_RB instance;
+
     // movement
-    public float speed = 15.0f;
+	public float speed = 3f;
+	public float startspeed;
+	private float startSpeed;
     private Vector3 moveDirection;
     private Rigidbody playerRigidBody;
     private Transform playerMesh;
@@ -13,10 +17,16 @@ public class PlayerController_RB : MonoBehaviour {
     public int currentWorld = 0;
 	public VirtualJoystick joystick;
 
+	void Awake ()
+	{
+		instance = this;
+	}
+
     // Use this for initialization
     void Start() {
         playerRigidBody = GetComponent<Rigidbody>();
         playerMesh = transform.GetChild(0).transform;
+		startspeed = speed;
     }
 
     // Update is called once per frame
