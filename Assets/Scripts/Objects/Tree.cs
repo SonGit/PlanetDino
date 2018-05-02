@@ -7,7 +7,8 @@ public class Tree : MonoBehaviour {
 	public Transform planetScale;
 
 	private float startScale;
-
+	private float deltaScale;
+	Transform t;
 	MeshRenderer mesh;
 
 	// Use this for initialization
@@ -15,11 +16,13 @@ public class Tree : MonoBehaviour {
 		planetScale = transform.parent.parent.transform;
 		startScale = planetScale.localScale.x;
 		mesh = this.GetComponentInChildren<MeshRenderer> ();
+		t = transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		deltaScale = startScale - planetScale.localScale.x;
+		t.localScale = new Vector3 (startScale + deltaScale,startScale + deltaScale,startScale + deltaScale);
 	}
 
 	void OnTriggerEnter(Collider other) {
