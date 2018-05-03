@@ -18,25 +18,27 @@ public abstract class Character : Cacheable {
 
 		if(currentColor == null)
 			currentColor = playerRenderers[0].material.mainTexture;
-		
+		type = Random.Range (0,2);
 		RandomColor ();
 	}
 
+	int type;
 	protected void RandomColor()
 	{
-		int random = Random.Range (0,colorTextures.Length);
-		Texture newColor = colorTextures[random];
-
-		while (newColor.name == currentColor.name) {
-			random = Random.Range (0,colorTextures.Length);
-			newColor = colorTextures[random];
+		if (type == 0) {
+			type = 1;
 		}
-
-		currentColor = newColor;
-
+		else
+		{
+			type = 0;
+		}
+			
+		currentColor = colorTextures [type];
 		foreach (Renderer render in playerRenderers) {
 			render.material.mainTexture = currentColor;
 		}
+
+
 	}
 
 	public override void OnDestroy ()

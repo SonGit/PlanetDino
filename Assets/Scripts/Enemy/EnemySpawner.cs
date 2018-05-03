@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour {
 	{
 		while (isSpawn) {
 			yield return new WaitForSeconds (rate);
-			if (totalEnemy < 19) {
+			if (totalEnemy < 12) {
 				Enemy enemyGo = ObjectPool.instance.GetEnemy ();
 				enemyGo.Live ();
 				Vector3 pos = RandomPoint ();

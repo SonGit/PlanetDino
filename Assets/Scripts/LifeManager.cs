@@ -43,13 +43,13 @@ public class LifeManager : MonoBehaviour {
 		UpdateLifeUI ();
 	}
 
-	public void Show()
-	{
-		gameObject.SetActive (true);
-	}
-
-	public void Hide()
-	{
-		gameObject.SetActive (false);
-	}
+//	public void Show()
+//	{
+//		gameObject.SetActive (true);
+//	}
+//
+//	public void Hide()
+//	{
+//		gameObject.SetActive (false);
+//	}
 }

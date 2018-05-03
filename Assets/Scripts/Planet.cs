@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour {
 
+	public static Planet instance;
+
 	public static float Size
 	{
 		get { return myTransform.localScale.x; }
@@ -17,6 +19,7 @@ public class Planet : MonoBehaviour {
 
 	void Awake ()
 	{
+		instance = this;
 		myTransform = transform;
 	}
 

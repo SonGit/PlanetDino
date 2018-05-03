@@ -22,8 +22,9 @@ public class ScreenShot : MonoBehaviour {
 			_instance = this;
 		}
 	}
-		
-	[HideInInspector] public string destination;
+
+	[HideInInspector]
+	public Texture2D screenTexture;
 	public Image shareImage;
 
 	// Use this for initialization
@@ -37,11 +38,9 @@ public class ScreenShot : MonoBehaviour {
 		// wait for graphics to render
 		yield return new WaitForEndOfFrame();
 
-		destination = Path.Combine(Application.persistentDataPath,System.DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + ".png");
-
 		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
 		// create the texture
-		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
+		screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
 		// put buffer into texture
 		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
 

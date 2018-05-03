@@ -8,6 +8,7 @@ public class ShareImageCanvas : MonoBehaviour {
 	private bool isProcessing = false;
 	public string mensaje;
 	public Image buttonShare;
+	[HideInInspector] public string destination;
 
 	//function called from a button
 	public void ButtonShare ()
@@ -21,6 +22,11 @@ public class ShareImageCanvas : MonoBehaviour {
 	{
 		isProcessing = true;
 
+		byte[] dataToSave = ScreenShot.Instance.screenTexture.EncodeToPNG();
+		destination = Path.Combine(Application.persistentDataPath,System.DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + ".png");
+		File.WriteAllBytes(destination,dataToSave);
+
+
 		if(!Application.isEditor)
 		{
 			// block to open the file and share it ------------START
@@ -28,7 +34,7 @@ public class ShareImageCanvas : MonoBehaviour {
 			AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
 			intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
 			AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
-			AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse","file://" + ScreenShot.Instance.destination);
+			AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse","file://" + destination);
 			intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_STREAM"), uriObject);
 
 			intentObject.Call<AndroidJavaObject> ("setType", "text/plain");

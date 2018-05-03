@@ -23,6 +23,7 @@ public class Tree : MonoBehaviour {
 	void Update () {
 		deltaScale = startScale - planetScale.localScale.x;
 		t.localScale = new Vector3 (startScale + deltaScale,startScale + deltaScale,startScale + deltaScale);
+		mesh.transform.localPosition = new Vector3 (0, 0, 0.888f);
 	}
 
 	void OnTriggerEnter(Collider other) {

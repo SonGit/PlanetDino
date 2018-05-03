@@ -68,16 +68,18 @@ public class AdsManager : MonoBehaviour {
 		GameManager.instance.HideGameOver ();
 		GameManager.instance.ObjAdsUnActive ();
 		GameManager.instance.gamePlayUI.SetActive (true);
+		GameManager.instance.objScore.SetActive (true);
 		Player.instance.PlayerUndying ();
 		EnemySpawner.instance.StartSpawn ();
 		PlayerController_RB.instance.speed = PlayerController_RB.instance.startspeed;
 		Player.instance.isAddScorePerSecond = true;
 		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
 		MusicThemeManager.instance.stems [0].source.Play ();
-		Player.instance.dustParticle.SetActive (true);
 		VirtualJoystick.instance.ImgAnchor.transform.position = new Vector3(-20000,-20000,-20000);
 		GameManager.instance.isCountdown = false;
 		GameManager.instance.countDownTime = -1f;
+		Planet.instance.GetComponent<Planet> ().enabled = true;
+
 	}
 		
 }

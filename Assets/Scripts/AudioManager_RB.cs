@@ -8,6 +8,7 @@ public class AudioManager_RB : MonoBehaviour {
 
 	private Dictionary<SoundFX,AudioClip> clips;
 
+	[HideInInspector]
 	public string isOnSound = "t";
 
 	void Awake()

@@ -15,9 +15,12 @@ public class GameManager : MonoBehaviour {
 	public GameObject objAds;
 	public GameObject[] containerBtns;
 	public GameObject gamePlayUI;
+	public GameObject objScore;
 	public List<Enemy> enemyList;
 
+	[HideInInspector]
 	public float countDownTime = 10;
+	[HideInInspector]
 	public bool isCountdown;
 
 	void Start ()
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour {
 		}
 		isCountdown = true;
 		KillAllEnemy ();
+		Planet.instance.GetComponent<Planet> ().enabled = false;
+		objScore.SetActive (false);
 	}
 
 	public void HideGameOver ()

@@ -8,7 +8,6 @@ public class Player : Character {
 	public static Player instance;
 
 
-	public GameObject dustParticle;
 	public int currentLife;
 	public static int Score = 0;
 	public static int highScore;
@@ -110,7 +109,7 @@ public class Player : Character {
 	{
 		if (!isRendererPlayer) 
 		{
-			currentLife -= 1;
+			currentLife -= 3;
 
 			if (currentLife > 0)
 			{
@@ -123,19 +122,22 @@ public class Player : Character {
 			{
 				// deathSound
 
-				ScreenShot.Instance.PlayScreenShot ();
+				if (DataController.Instance != null) {
+					ScreenShot.Instance.PlayScreenShot ();
 
-				DataController.Instance.SubmitNewPlayerScore (Player.Score);
+					DataController.Instance.SubmitNewPlayerScore (Player.Score);
 
-				StartCoroutine (WaitDestroyPlayer());
+					StartCoroutine (WaitDestroyPlayer());
 
-				GameManager.instance.ShowGameOver();
+					GameManager.instance.ShowGameOver();
 
-				EnemySpawner.instance.PauseSpawn ();
+					EnemySpawner.instance.PauseSpawn ();
 
-				PlayerController_RB.instance.speed = 0f;
+					PlayerController_RB.instance.speed = 0f;
 
-				isAddScorePerSecond = false;
+					isAddScorePerSecond = false;
+				}
+
 			}
 		}
 

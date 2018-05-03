@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour {
 
 	public GameObject Main;
 	public GameObject Setting;
+	public GameObject Score;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +23,20 @@ public class MainMenu : MonoBehaviour {
 	{
 		Main.SetActive (true);
 		Setting.SetActive (false);
+//		if (Score != null) {
+//			Score.SetActive (true);
+//		}
+
 	}
 
 	public void GoToSetting()
 	{
 		Main.SetActive (false);
 		Setting.SetActive (true);
+		if (Score != null) {
+			Score.SetActive (false);
+		}
+
 	}
 
 	public void LoadLevel ()
