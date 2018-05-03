@@ -6,9 +6,18 @@ using UnityEngine.Advertisements;
 
 public class AdsManager : MonoBehaviour {
 
+	public static AdsManager instance;
+
 	private Button m_Button;
 	private string gameId = "1770286";
 	private string placementId = "rewardedVideo";
+	[HideInInspector]
+	public bool isAds;
+
+	void Awake ()
+	{
+		instance = this;
+	}
 
 	void Start ()
 	{    
@@ -54,6 +63,7 @@ public class AdsManager : MonoBehaviour {
 
 	private void Rewardplayer ()
 	{
+		isAds = true;
 		Player.instance.currentLife ++;
 		GameManager.instance.HideGameOver ();
 		GameManager.instance.ObjAdsUnActive ();
@@ -62,6 +72,12 @@ public class AdsManager : MonoBehaviour {
 		EnemySpawner.instance.StartSpawn ();
 		PlayerController_RB.instance.speed = PlayerController_RB.instance.startspeed;
 		Player.instance.isAddScorePerSecond = true;
+		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
+		MusicThemeManager.instance.stems [0].source.Play ();
+		Player.instance.dustParticle.SetActive (true);
+		VirtualJoystick.instance.ImgAnchor.transform.position = new Vector3(-20000,-20000,-20000);
+		GameManager.instance.isCountdown = false;
+		GameManager.instance.countDownTime = -1f;
 	}
 		
 }

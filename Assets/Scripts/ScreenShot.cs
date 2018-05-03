@@ -62,26 +62,6 @@ public class ScreenShot : MonoBehaviour {
 		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
 		shareImage.GetComponent<Image>().sprite = sprite;
 
-		for (int i = 0; i < 9; i++)
-		{
-			yield return null;
-		}
-			
-		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
-		byte[] dataToSave = screenTexture.EncodeToPNG();
-
-		for (int i = 0; i < 9; i++)
-		{
-			yield return null;
-		}
-
-
-		new System.Threading.Thread(() =>
-			{
-				System.Threading.Thread.Sleep(100);
-				File.WriteAllBytes(destination, dataToSave);
-			}).Start();
-
 	
 	}
 

@@ -39,6 +39,8 @@ public class Enemy : Character {
 	{
 		ExplosionEffect (transform.position);
 		StartCoroutine (WaitDestroyEnemy());
+		if(AudioManager_RB.instance != null)
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.EnemyHit,transform.position);
 	}
 
 	void OnCollisionEnter(Collision other) {

@@ -8,6 +8,8 @@ public class AudioManager_RB : MonoBehaviour {
 
 	private Dictionary<SoundFX,AudioClip> clips;
 
+	public string isOnSound = "t";
+
 	void Awake()
 	{
 		instance = this;
@@ -15,10 +17,17 @@ public class AudioManager_RB : MonoBehaviour {
 
 	IEnumerator Start()
 	{
+		
+
+		DontDestroyOnLoad (gameObject);
+
 		clips = new Dictionary<SoundFX, AudioClip> {
 
 			{ SoundFX.None, null },
 			{ SoundFX.Click, Resources.Load<AudioClip>("Sounds/Click") },
+			{ SoundFX.PlayerInjured, Resources.Load<AudioClip>("Sounds/PlayerInjured") },
+			{ SoundFX.PlayerDeath, Resources.Load<AudioClip>("Sounds/PlayerDeath") },
+			{ SoundFX.EnemyHit, Resources.Load<AudioClip>("Sounds/EnemyHit") },
 		};
 
 		yield return new WaitForSeconds (1);
@@ -27,17 +36,26 @@ public class AudioManager_RB : MonoBehaviour {
 	public enum SoundFX
 	{
 		None,
-		Click
+		Click,
+		PlayerInjured,
+		PlayerDeath,
+		EnemyHit,
 	}
 
-	public void PlayClip(SoundFX soundFX,Vector3 worldPos,float volume = 1)
+	public void PlayClip(SoundFX soundFX,Vector3 worldPos)
 	{
 		AudioClip clip;
 		if (clips.TryGetValue (soundFX, out clip)) {
 			
-			AudioSource_RB audio = ObjectPool.instance.GetAudioSource ();
+			AudioSource_RB audio = ObjectPoolSound.instance.GetAudioSource ();
 			audio.audioSource.clip = clip;
-			audio.audioSource.volume = volume;
+
+			if (isOnSound == "t") {
+				audio.audioSource.volume = 1;
+			} else if (isOnSound == "f"){
+				audio.audioSource.volume = 0;
+			}
+		
 			audio.transform.position = worldPos;
 			audio.Live ();
 

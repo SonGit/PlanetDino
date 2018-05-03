@@ -9,7 +9,6 @@ public class ObjectPool : MonoBehaviour {
 	public static ObjectPool instance;
 
 	GenericObject<Enemy> enemy;
-	GenericObject<AudioSource_RB> audioSource;
 
 	GenericObject<Explosion> explosion1;
 	GenericObject<Explosion> explosion2;
@@ -25,8 +24,6 @@ public class ObjectPool : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,20);
-		audioSource = new GenericObject<AudioSource_RB>(ObjectFactory.PrefabType.AudioSource,1);
-
 		explosion1 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion1,2);
 		explosion2 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion2,2);
 		explosion3 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion3,2);
@@ -38,11 +35,6 @@ public class ObjectPool : MonoBehaviour {
 	public Enemy GetEnemy()
 	{
 		return enemy.GetObj ();
-	}
-
-	public AudioSource_RB GetAudioSource()
-	{
-		return audioSource.GetObj ();
 	}
 		
 	public Explosion GetExplosion1()

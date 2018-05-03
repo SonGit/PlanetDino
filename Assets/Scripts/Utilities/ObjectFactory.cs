@@ -12,6 +12,9 @@ public class ObjectFactory: MonoBehaviour {
 		instance = this;
 	}
 
+	void Start () {
+	}
+
 	public enum PrefabType
 	{
 		None,

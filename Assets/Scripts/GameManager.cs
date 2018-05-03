@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject gamePlayUI;
 	public List<Enemy> enemyList;
 
-	private float countDownTime = 10;
-	private bool isCountdown;
+	public float countDownTime = 10;
+	public bool isCountdown;
 
 	void Start ()
 	{
@@ -39,8 +39,11 @@ public class GameManager : MonoBehaviour {
 	{
 		gamePlayUI.SetActive (false);
 		yield return new WaitForSeconds (0.5f);
-		isCountdown = true;
 		gameOverUI.SetActive(true);
+		if (!AdsManager.instance.isAds) {
+			PlayCountDown ();
+		}
+		isCountdown = true;
 		KillAllEnemy ();
 	}
 
@@ -53,12 +56,13 @@ public class GameManager : MonoBehaviour {
 	public void Restart ()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
+		MusicThemeManager.instance.stems [0].source.Play ();
 	}
 
 	void Update ()
 	{
 		CountDown ();
-
 	}
 
 	public void ObjAdsUnActive ()
@@ -77,8 +81,10 @@ public class GameManager : MonoBehaviour {
 		countDownTime -= Time.deltaTime;
 
 		if (countDownTime <= 0) {
-			isCountdown = false;
+			StopCountDown ();
+			PlayMusicGameOver ();
 			ObjAdsUnActive ();
+
 		}
 
 		countDownText.text = "" + (int)countDownTime;
@@ -107,4 +113,27 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	private void PlayCountDown ()
+	{
+		isCountdown = true;
+		MusicThemeManager.instance.stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
+		MusicThemeManager.instance.stems [2].source.Play ();
+	}
+
+	private void StopCountDown ()
+	{
+		isCountdown = false;
+		MusicThemeManager.instance.stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
+		MusicThemeManager.instance.stems [2].source.Stop ();
+	}
+
+
+	private void PlayMusicGameOver ()
+	{
+		if (Player.instance.currentLife <= 0) {
+			MusicThemeManager.instance.stems [1].source.clip = MusicThemeManager.instance.stems [1].clip;
+			MusicThemeManager.instance.stems [1].source.Play ();
+		}
+
+	}
 }

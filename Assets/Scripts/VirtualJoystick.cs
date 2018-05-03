@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler {
 
+	public static VirtualJoystick instance;
+
 	public Image ImgBg;
 	public Image ImgJoystick;
 	public Transform ImgAnchor;
@@ -15,13 +17,21 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 		}
 	}
 
+	void Awake ()
+	{
+		instance = this;
+	}
+
 	void Update()
 	{
 
 	}
 
 	public void OnPointerDown(PointerEventData e) {
-		//AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.Click,transform.position);
+		if (AudioManager_RB.instance != null) {
+			AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.Click,transform.position);
+		}
+
 		ImgAnchor.transform.position = Input.mousePosition;
 		OnDrag(e);
 	}
