@@ -23,7 +23,7 @@ public class PlanetPole : MonoBehaviour {
 
 	float maxDistance;
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		distanceToDark = Vector3.Distance (transform.position,player.position);
 
 		maxDistance = (planet.localScale.x * 9f) / 0.8f;

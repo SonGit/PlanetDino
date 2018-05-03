@@ -109,7 +109,7 @@ public class Player : Character {
 	{
 		if (!isRendererPlayer) 
 		{
-			currentLife -= 3;
+			currentLife -= 1;
 
 			if (currentLife > 0)
 			{

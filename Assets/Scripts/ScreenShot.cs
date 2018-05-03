@@ -58,17 +58,18 @@ public class ScreenShot : MonoBehaviour {
 			yield return null;
 		}
 
+
 		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
 		shareImage.GetComponent<Image>().sprite = sprite;
-
 	
 	}
 
 	public void PlayScreenShot ()
 	{
+		//Thread myThread = new Thread(new ThreadStar)
+
 		StartCoroutine (ScreenShotActive());
 	}
-
-
+		
 
 }

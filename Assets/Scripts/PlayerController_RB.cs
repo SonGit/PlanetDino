@@ -33,17 +33,15 @@ public class PlayerController_RB : MonoBehaviour {
     void Update() {
         // update move direction
 		moveDirection = new Vector3(joystick.Horizontal(), 0, joystick.Vertical()).normalized;
+
+		// update movement
+		playerRigidBody.MovePosition(playerRigidBody.position + transform.TransformDirection(moveDirection * speed * Time.deltaTime));
+		// rotate player to face the right direction
+		RotatePlayer();
+
+		playerRigidBody.MovePosition (transform.position + playerMesh.transform.forward * speed * Time.deltaTime);
     }
 
-    void FixedUpdate()
-    {
-        // update movement
-        playerRigidBody.MovePosition(playerRigidBody.position + transform.TransformDirection(moveDirection * speed * Time.fixedDeltaTime));
-        // rotate player to face the right direction
-        RotatePlayer();
-
-		playerRigidBody.MovePosition (transform.position + playerMesh.transform.forward * speed * Time.fixedDeltaTime);
-    }
 
     // Rotate player to face direction of movement
     void RotatePlayer()

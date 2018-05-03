@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
 		KillAllEnemy ();
 		Planet.instance.GetComponent<Planet> ().enabled = false;
 		objScore.SetActive (false);
+		yield return new WaitForSeconds (0.5f);
+		//ScreenShot.Instance.ShowImg ();
 	}
 
 	public void HideGameOver ()

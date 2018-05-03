@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartSpawn ();
-		InvokeRepeating ("CheckTotalEnemy",1,1);
+		InvokeRepeating ("CheckTotalEnemy",0,1);
 	}
 
 	public void StartSpawn ()
