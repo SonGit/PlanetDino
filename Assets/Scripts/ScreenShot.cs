@@ -26,49 +26,64 @@ public class ScreenShot : MonoBehaviour {
 	[HideInInspector]
 	public Texture2D screenTexture;
 	public Image shareImage;
+	[HideInInspector] public string destination;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-
-	private IEnumerator ScreenShotActive ()
-	{
-		
-		// wait for graphics to render
-		yield return new WaitForEndOfFrame();
-
-		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
-		// create the texture
-		screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
-		// put buffer into texture
-		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
-
-
-		for (int i = 0; i < 9; i++)
-		{
-			yield return null;
-		}
-
-		// apply
-		screenTexture.Apply();
-
-		for (int i = 0; i < 9; i++)
-		{
-			yield return null;
-		}
-
-
-		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
-		shareImage.GetComponent<Image>().sprite = sprite;
-	
 	}
 
 	public void PlayScreenShot ()
 	{
-		//Thread myThread = new Thread(new ThreadStar)
+		destination = Application.persistentDataPath + "/screenshot.png";
 
-		StartCoroutine (ScreenShotActive());
+		// Take the screenshot
+		ScreenCapture.CaptureScreenshot(destination);
+
+//		// wait for graphics to render
+//		yield return new WaitForEndOfFrame();
+//
+//		// put buffer into texture
+//		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
+//
+//		// create the texture
+//		screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
+//
+//		for (int i = 0; i < 9; i++)
+//		{
+//			yield return null;
+//		}
+//
+//		// apply
+//		screenTexture.Apply();
+//
+//		for (int i = 0; i < 9; i++)
+//		{
+//			yield return null;
+//		}
+//
+//		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
+//		shareImage.GetComponent<Image>().sprite = sprite;
+	
+	}
+		
+
+	public void LoadImage()
+	{
+		// Read the data from the file
+		byte[] data = File.ReadAllBytes(destination);
+
+
+		// Create the texture
+		screenTexture = new Texture2D(Screen.width, Screen.height);
+
+		// Load the image
+		screenTexture.LoadImage(data);
+
+		// Create a sprite
+		Sprite screenshotSprite = Sprite.Create(screenTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
+
+		// Set the sprite to the screenshotPreview
+		shareImage.GetComponent<Image>().sprite = screenshotSprite;
 	}
 		
 

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 		Planet.instance.GetComponent<Planet> ().enabled = false;
 		objScore.SetActive (false);
 		yield return new WaitForSeconds (0.5f);
-		//ScreenShot.Instance.ShowImg ();
+		ScreenShot.Instance.LoadImage ();
 	}
 
 	public void HideGameOver ()
