@@ -45,6 +45,8 @@ public class AdsManager : MonoBehaviour {
 		options.resultCallback = HandleShowResult;
 
 		Advertisement.Show(placementId, options);
+
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 
 	private void HandleShowResult (ShowResult result)

@@ -29,6 +29,7 @@ public class AudioManager_RB : MonoBehaviour {
 			{ SoundFX.PlayerInjured, Resources.Load<AudioClip>("Sounds/PlayerInjured") },
 			{ SoundFX.PlayerDeath, Resources.Load<AudioClip>("Sounds/PlayerDeath") },
 			{ SoundFX.EnemyHit, Resources.Load<AudioClip>("Sounds/EnemyHit") },
+			{ SoundFX.ButtonPresses, Resources.Load<AudioClip>("Sounds/ButtonPresses") },
 		};
 
 		yield return new WaitForSeconds (1);
@@ -41,6 +42,7 @@ public class AudioManager_RB : MonoBehaviour {
 		PlayerInjured,
 		PlayerDeath,
 		EnemyHit,
+		ButtonPresses,
 	}
 
 	public void PlayClip(SoundFX soundFX,Vector3 worldPos)

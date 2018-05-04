@@ -19,33 +19,27 @@ public class Setting : MonoBehaviour {
 
 	public void MusicOn()
 	{
-		Debug.Log ("off");
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		DataController.Instance.SubmitMusicSetting ("f");
 
 	}
 
 	public void MusicOff()
 	{
-		Debug.Log ("on");
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		DataController.Instance.SubmitMusicSetting ("t");
-//		for (int i = 0; i < MusicThemeManager.instance.stems.Length; i++) {
-//			MusicThemeManager.instance.stems [i].source.volume = 1;
-//		}
-
-
 	}
 
 	public void SoundOn()
 	{
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		DataController.Instance.SubmitSoundSetting ("f");
-
-		Debug.Log ("off");
 	}
 
 	public void SoundOff()
 	{
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		DataController.Instance.SubmitSoundSetting ("t");
-		Debug.Log ("on");
 	}
 
 	public void Show()
@@ -77,8 +71,6 @@ public class Setting : MonoBehaviour {
 			SoundBtns [0].SetActive (false);
 			SoundBtns [1].SetActive (true);
 		}
-
-
 	}
 
 
@@ -95,8 +87,6 @@ public class Setting : MonoBehaviour {
 			MusicBtns [0].SetActive (false);
 			MusicBtns [1].SetActive (true);
 		}
-
-
 	}
 
 }

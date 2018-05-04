@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour {
 		KillAllEnemy ();
 		Planet.instance.GetComponent<Planet> ().enabled = false;
 		objScore.SetActive (false);
-		yield return new WaitForSeconds (0.5f);
-		ScreenShot.Instance.LoadImage ();
+//		yield return new WaitForSeconds (0.5f);
+//		ScreenShot.Instance.LoadImage ();
 	}
 
 	public void HideGameOver ()
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
 		MusicThemeManager.instance.stems [0].source.Play ();
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 
 	void Update ()

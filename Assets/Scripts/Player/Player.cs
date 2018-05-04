@@ -113,17 +113,14 @@ public class Player : Character {
 
 			if (currentLife > 0)
 			{
-				// hit sound
+				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerInjured,transform.position);
 				ScoreUI.instance.comboCount = 0;
 				PlayerUndying ();
-
 			}
 			else
 			{
-				// deathSound
-
 				if (DataController.Instance != null) {
-					ScreenShot.Instance.PlayScreenShot ();
+					StartCoroutine( ScreenShot.Instance.PlayScreenShot ());
 
 					DataController.Instance.SubmitNewPlayerScore (Player.Score);
 
@@ -136,6 +133,8 @@ public class Player : Character {
 					PlayerController_RB.instance.speed = 0f;
 
 					isAddScorePerSecond = false;
+
+					AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerDeath,transform.position);
 				}
 
 			}

@@ -14,7 +14,7 @@ public class AdScript : MonoBehaviour {
 
 	private void showBannerAd()
 	{
-		string adID = "ca-app-pub-8355966060340523~2957673436";
+		string adID = "ca-app-pub-8355966060340523/3111670384";
 
 		//***For Testing in the Device***
 		AdRequest request = new AdRequest.Builder()

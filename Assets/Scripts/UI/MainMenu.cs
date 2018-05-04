@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void GoToMain()
 	{
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		Main.SetActive (true);
 		Setting.SetActive (false);
 //		if (Score != null) {
@@ -31,6 +32,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void GoToSetting()
 	{
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 		Main.SetActive (false);
 		Setting.SetActive (true);
 		if (Score != null) {
@@ -42,5 +44,6 @@ public class MainMenu : MonoBehaviour {
 	public void LoadLevel ()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 }

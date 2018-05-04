@@ -25,65 +25,66 @@ public class ScreenShot : MonoBehaviour {
 
 	[HideInInspector]
 	public Texture2D screenTexture;
+	[HideInInspector]
 	public Image shareImage;
-	[HideInInspector] public string destination;
+
 
 	// Use this for initialization
 	void Start () {
 	}
 
-	public void PlayScreenShot ()
+	public IEnumerator PlayScreenShot ()
 	{
-		destination = Application.persistentDataPath + "/screenshot.png";
-
 		// Take the screenshot
-		ScreenCapture.CaptureScreenshot(destination);
 
 //		// wait for graphics to render
-//		yield return new WaitForEndOfFrame();
+		yield return new WaitForEndOfFrame();
 //
 //		// put buffer into texture
-//		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
+		screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
+		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
 //
 //		// create the texture
-//		screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24,true);
+	
 //
-//		for (int i = 0; i < 9; i++)
-//		{
-//			yield return null;
-//		}
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
 //
 //		// apply
-//		screenTexture.Apply();
+		screenTexture.Apply();
+	
 //
-//		for (int i = 0; i < 9; i++)
-//		{
-//			yield return null;
-//		}
+		for (int i = 0; i < 9; i++)
+		{
+			yield return null;
+		}
 //
-//		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
-//		shareImage.GetComponent<Image>().sprite = sprite;
+		Sprite sprite = Sprite.Create (screenTexture, new Rect (0, 0, screenTexture.width, screenTexture.height), new Vector2 (0.5f, 0.5f));
+		shareImage.GetComponent<Image>().sprite = sprite;
 	
 	}
 		
 
 	public void LoadImage()
 	{
+		return;
 		// Read the data from the file
-		byte[] data = File.ReadAllBytes(destination);
+		//byte[] data = System.IO.File.ReadAllBytes(destination);
 
-
+//		Debug.Log ("LOGG2 " + Application.persistentDataPath+"/"+destination);
 		// Create the texture
-		screenTexture = new Texture2D(Screen.width, Screen.height);
+		//screenTexture = new Texture2D(Screen.width, Screen.height);
 
 		// Load the image
-		screenTexture.LoadImage(data);
+		//screenTexture.LoadImage(data);
 
 		// Create a sprite
-		Sprite screenshotSprite = Sprite.Create(screenTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
+		//Sprite screenshotSprite = Sprite.Create(screenTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
 
 		// Set the sprite to the screenshotPreview
-		shareImage.GetComponent<Image>().sprite = screenshotSprite;
+		//shareImage.GetComponent<Image>().sprite = screenshotSprite;
 	}
 		
 

@@ -20,5 +20,6 @@ public class WebsiteManager : MonoBehaviour {
 	public void LinkToWebsite ()
 	{
 		Application.OpenURL("http://unity3d.com/");
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 }
