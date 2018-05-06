@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetDino", "Assembly-CSharp.csproj", "{17A21685-22F8-3F8E-7AFB-F18EC6353FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetDino", "Assembly-CSharp-firstpass.csproj", "{4FA7BE1C-91B4-DFAA-0B9D-AFC5B52B0240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetDino", "Assembly-CSharp-Editor.csproj", "{62B48B91-F294-6843-A044-E6B034459865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17A21685-22F8-3F8E-7AFB-F18EC6353FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A21685-22F8-3F8E-7AFB-F18EC6353FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A21685-22F8-3F8E-7AFB-F18EC6353FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A21685-22F8-3F8E-7AFB-F18EC6353FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA7BE1C-91B4-DFAA-0B9D-AFC5B52B0240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA7BE1C-91B4-DFAA-0B9D-AFC5B52B0240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA7BE1C-91B4-DFAA-0B9D-AFC5B52B0240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA7BE1C-91B4-DFAA-0B9D-AFC5B52B0240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62B48B91-F294-6843-A044-E6B034459865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B48B91-F294-6843-A044-E6B034459865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B48B91-F294-6843-A044-E6B034459865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62B48B91-F294-6843-A044-E6B034459865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
