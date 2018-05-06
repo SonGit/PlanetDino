@@ -81,7 +81,7 @@ public class Player : Character {
 	{
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
-			RandomColor ();
+			ChangeColor ();
 
 			if (!isRendererPlayer) 
 			{
@@ -99,9 +99,27 @@ public class Player : Character {
 		}
 	}
 
+	private void ChangeColor()
+	{
+		int type = 0;
+		switch (currentColor.name) {
+		case "Character_4":
+			type = 1;
+			break;
+		case "Character_1":
+			type = 0;
+			break;
+		}
+
+		currentColor = colorTextures [type];
+		foreach (Renderer render in playerRenderers) {
+			render.material.mainTexture = currentColor;
+		}
+	}
+
 	private void OnHitTree()
 	{
-		Player.Score -= 1;
+		Player.Score -= 5;
 		ScoreUI.instance.SubtractScoreTextAnimation ();
 	}
 
@@ -113,6 +131,7 @@ public class Player : Character {
 
 			if (currentLife > 0)
 			{
+				if(AudioManager_RB.instance != null)
 				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerInjured,transform.position);
 				ScoreUI.instance.comboCount = 0;
 				PlayerUndying ();
@@ -173,6 +192,5 @@ public class Player : Character {
 	{
 		StartCoroutine (RendererPlayer());
 	}
-
 
 }

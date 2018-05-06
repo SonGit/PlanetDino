@@ -43,6 +43,9 @@ public class EnemySpawner : MonoBehaviour {
 			if (totalEnemy < 12) {
 				Enemy enemyGo = ObjectPool.instance.GetEnemy ();
 				enemyGo.Live ();
+				enemyGo.RandomColor (Random.Range(0,2));
+
+
 				Vector3 pos = RandomPoint ();
 				enemyGo.transform.position = pos;
 				Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();

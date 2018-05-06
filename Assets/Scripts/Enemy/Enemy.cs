@@ -100,6 +100,13 @@ public class Enemy : Character {
 		Destroy ();
 	}
 
+	public void RandomColor(int col)
+	{
+		currentColor = colorTextures [col];
+		foreach (Renderer render in playerRenderers) {
+			render.material.mainTexture = currentColor;
+		}
+	}
 
 
 }

@@ -45,6 +45,8 @@ public class ScoreUI : MonoBehaviour {
 		ComboUpdate ();
 			
 		comboAlpha ();
+
+		UpdatePlayerSpeed ();
 	}
 		
 	float duration = .25f;
@@ -129,7 +131,7 @@ public class ScoreUI : MonoBehaviour {
 		ast.transform.parent = this.transform;
 		ast.transform.position = addScoreAnchor.transform.position;
 		ast.Live ();
-		ast.Init (-1,text.transform);
+		ast.Init (-5,text.transform);
 	}
 
 	void comboAlpha (){
@@ -137,6 +139,22 @@ public class ScoreUI : MonoBehaviour {
 			float a = 1 -  ((comboTimeCount * 1) / comboRate);
 			comboText.alpha = a;
 			comboTitle.alpha = a;
+		}
+	}
+
+	float defaultSpeed = 3;
+	void UpdatePlayerSpeed()
+	{
+		if (comboCount > 0) {
+			float speed = defaultSpeed + (comboCount * 0.1f);
+
+			if (speed > 5f)
+				speed = 5f;
+			
+			PlayerController_RB.instance.speed = speed;
+			
+		} else {
+			PlayerController_RB.instance.speed = defaultSpeed;
 		}
 	}
 

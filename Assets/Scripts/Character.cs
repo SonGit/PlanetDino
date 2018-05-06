@@ -18,29 +18,8 @@ public abstract class Character : Cacheable {
 
 		if(currentColor == null)
 			currentColor = playerRenderers[0].material.mainTexture;
-		type = Random.Range (0,2);
-		RandomColor ();
 	}
-
-	int type;
-	protected void RandomColor()
-	{
-		if (type == 0) {
-			type = 1;
-		}
-		else
-		{
-			type = 0;
-		}
-			
-		currentColor = colorTextures [type];
-		foreach (Renderer render in playerRenderers) {
-			render.material.mainTexture = currentColor;
-		}
-
-
-	}
-
+		
 	public override void OnDestroy ()
 	{
 		gameObject.SetActive (false);
