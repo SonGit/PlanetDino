@@ -73,6 +73,7 @@ public class AdsManager : MonoBehaviour {
 		GameManager.instance.objScore.SetActive (true);
 		Player.instance.PlayerUndying ();
 		EnemySpawner.instance.StartSpawn ();
+		PlayerController_RB.instance.enabled = true;
 		PlayerController_RB.instance.speed = PlayerController_RB.instance.startspeed;
 		Player.instance.isAddScorePerSecond = true;
 		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;

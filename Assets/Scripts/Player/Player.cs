@@ -139,7 +139,7 @@ public class Player : Character {
 			else
 			{
 				if (DataController.Instance != null) {
-					StartCoroutine( ScreenShot.Instance.PlayScreenShot ());
+					StartCoroutine( ScreenShot.Instance.TakeScreenShot ());
 
 					DataController.Instance.SubmitNewPlayerScore (Player.Score);
 
@@ -149,7 +149,7 @@ public class Player : Character {
 
 					EnemySpawner.instance.PauseSpawn ();
 
-					PlayerController_RB.instance.speed = 0f;
+					PlayerController_RB.instance.enabled = false;
 
 					isAddScorePerSecond = false;
 
