@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  center: {fileID: 1424976463}
+  center: {fileID: 1865688284}
 --- !u!1001 &223267785
 Prefab:
   m_ObjectHideFlags: 0
@@ -5829,10 +5829,6 @@ Prefab:
 --- !u!1 &1424976462 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 70193ffa8261807469e1086364bf38aa, type: 3}
-  m_PrefabInternal: {fileID: 1724244628}
---- !u!4 &1424976463 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 70193ffa8261807469e1086364bf38aa, type: 3}
   m_PrefabInternal: {fileID: 1724244628}
 --- !u!54 &1424976468
 Rigidbody:
