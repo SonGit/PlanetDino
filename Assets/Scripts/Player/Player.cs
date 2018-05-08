@@ -139,9 +139,11 @@ public class Player : Character {
 			else
 			{
 				if (DataController.Instance != null) {
-					StartCoroutine( ScreenShot.Instance.TakeScreenShot ());
-
+					GameManager.instance.objHighScore.SetActive (true);
+				
 					DataController.Instance.SubmitNewPlayerScore (Player.Score);
+
+					StartCoroutine( ScreenShot.Instance.TakeScreenShot ());
 
 					StartCoroutine (WaitDestroyPlayer());
 

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject[] containerBtns;
 	public GameObject gamePlayUI;
 	public GameObject objScore;
+	public GameObject objHighScore;
 	public List<Enemy> enemyList;
 
 	[HideInInspector]
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour {
 	private IEnumerator WaitShowGameOver ()
 	{
 		gamePlayUI.SetActive (false);
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.7f);
 		gameOverUI.SetActive(true);
 		if (!AdsManager.instance.isAds) {
 			PlayCountDown ();
@@ -49,9 +50,6 @@ public class GameManager : MonoBehaviour {
 		isCountdown = true;
 		KillAllEnemy ();
 		Planet.instance.GetComponent<Planet> ().enabled = false;
-		objScore.SetActive (false);
-//		yield return new WaitForSeconds (0.5f);
-//		ScreenShot.Instance.LoadImage ();
 	}
 
 	public void HideGameOver ()
@@ -63,8 +61,7 @@ public class GameManager : MonoBehaviour {
 	public void Restart ()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
-		MusicThemeManager.instance.stems [0].source.Play ();
+		MusicThemeManager.instance.PlayMusicMenuVsGamePLay ();
 		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 
@@ -92,7 +89,6 @@ public class GameManager : MonoBehaviour {
 			StopCountDown ();
 			PlayMusicGameOver ();
 			ObjAdsUnActive ();
-
 		}
 
 		countDownText.text = "" + (int)countDownTime;
@@ -124,23 +120,20 @@ public class GameManager : MonoBehaviour {
 	private void PlayCountDown ()
 	{
 		isCountdown = true;
-		MusicThemeManager.instance.stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
-		MusicThemeManager.instance.stems [2].source.Play ();
+		MusicThemeManager.instance.PlayMusicCountDown ();
 	}
 
 	private void StopCountDown ()
 	{
 		isCountdown = false;
-		MusicThemeManager.instance.stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
-		MusicThemeManager.instance.stems [2].source.Stop ();
+		MusicThemeManager.instance.StopMusicCountDown ();
 	}
 
 
 	private void PlayMusicGameOver ()
 	{
 		if (Player.instance.currentLife <= 0) {
-			MusicThemeManager.instance.stems [1].source.clip = MusicThemeManager.instance.stems [1].clip;
-			MusicThemeManager.instance.stems [1].source.Play ();
+			MusicThemeManager.instance.PlayMusicGameOver ();
 		}
 
 	}

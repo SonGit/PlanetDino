@@ -9,8 +9,9 @@ public class AdsManager : MonoBehaviour {
 	public static AdsManager instance;
 
 	private Button m_Button;
-	private string gameId = "1770286";
-	private string placementId = "rewardedVideo";
+	private string gameId = "1792243";
+	//private string placementId = "rewardedVideo";
+	private string placementId = "video";
 	[HideInInspector]
 	public bool isAds;
 
@@ -70,14 +71,13 @@ public class AdsManager : MonoBehaviour {
 		GameManager.instance.HideGameOver ();
 		GameManager.instance.ObjAdsUnActive ();
 		GameManager.instance.gamePlayUI.SetActive (true);
-		GameManager.instance.objScore.SetActive (true);
+		GameManager.instance.objHighScore.SetActive (false);
 		Player.instance.PlayerUndying ();
 		EnemySpawner.instance.StartSpawn ();
 		PlayerController_RB.instance.enabled = true;
 		PlayerController_RB.instance.speed = PlayerController_RB.instance.startspeed;
 		Player.instance.isAddScorePerSecond = true;
-		MusicThemeManager.instance.stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
-		MusicThemeManager.instance.stems [0].source.Play ();
+		MusicThemeManager.instance.PlayMusicMenuVsGamePLay ();
 		VirtualJoystick.instance.ImgAnchor.transform.position = new Vector3(-20000,-20000,-20000);
 		GameManager.instance.isCountdown = false;
 		GameManager.instance.countDownTime = -1f;

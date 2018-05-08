@@ -41,5 +41,29 @@ public class MusicThemeManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public void PlayMusicMenuVsGamePLay ()
+	{
+		stems[0].source.clip = MusicThemeManager.instance.stems[0].clip;
+		stems [0].source.Play ();
+	}
+
+	public void PlayMusicCountDown ()
+	{
+		stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
+		stems [2].source.Play ();
+	}
+
+	public void StopMusicCountDown ()
+	{
+		stems[2].source.clip = MusicThemeManager.instance.stems[2].clip;
+		stems [2].source.Stop ();
+	}
+
+	public void PlayMusicGameOver ()
+	{
+		stems [1].source.clip = MusicThemeManager.instance.stems [1].clip;
+		stems [1].source.Play ();
+	}
 		
 }

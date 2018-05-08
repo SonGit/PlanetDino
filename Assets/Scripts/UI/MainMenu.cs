@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
 
 	public GameObject Main;
 	public GameObject Setting;
-	public GameObject Score;
+	public GameObject Tutorial;
 
 	// Use this for initialization
 	void Start () {
@@ -22,21 +22,69 @@ public class MainMenu : MonoBehaviour {
 	public void GoToMain()
 	{
 		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
-		Main.SetActive (true);
-		Setting.SetActive (false);
-//		if (Score != null) {
-//			Score.SetActive (true);
-//		}
+
+		if (Main != null) {
+			Main.SetActive (true);
+		}
+
+		if (Setting != null) {
+			Setting.SetActive (false);
+		}
+
+		if (Tutorial != null) {
+			Tutorial.SetActive (false);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objScore.SetActive (true);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objHighScore.SetActive (true);
+		}
 
 	}
 
 	public void GoToSetting()
 	{
 		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
-		Main.SetActive (false);
-		Setting.SetActive (true);
-		if (Score != null) {
-			Score.SetActive (false);
+
+		if (Main != null) {
+			Main.SetActive (false);
+		}
+
+		if (Setting != null) {
+			Setting.SetActive (true);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objScore.SetActive (false);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objHighScore.SetActive (false);
+		}
+
+	}
+
+	public void GoToTutorial()
+	{
+		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
+
+		if (Main != null) {
+			Main.SetActive (false);
+		}
+
+		if (Tutorial != null) {
+			Tutorial.SetActive (true);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objScore.SetActive (false);
+		}
+
+		if (GameManager.instance != null) {
+			GameManager.instance.objHighScore.SetActive (false);
 		}
 
 	}

@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class ShareImageCanvas : MonoBehaviour {
 
-	private bool isProcessing = false;
-	public string mensaje;
-	public Image buttonShare;
-	[HideInInspector] public string destination;
-
 	//function called from a button
 	public void ButtonShare ()
 	{
@@ -19,6 +14,9 @@ public class ShareImageCanvas : MonoBehaviour {
 	public void ShareScreenshot()
 	{
 		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
+
+		GameManager.instance.objAds.SetActive (false);
+		GameManager.instance.countDownTime = -1f;
 
 		string filePath = Path.Combine( Application.persistentDataPath, "shared img.png" );
 		File.WriteAllBytes( filePath, ScreenShot.Instance.screenTexture.EncodeToPNG() );

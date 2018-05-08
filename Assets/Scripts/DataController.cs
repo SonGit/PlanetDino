@@ -80,9 +80,9 @@ public class DataController : MonoBehaviour {
 	}
 
 
-	public void SubmitMusicSetting(string a)
+	public void SubmitMusicSetting(string m)
 	{
-		MusicThemeManager.instance.isOnMusic = a;
+		MusicThemeManager.instance.isOnMusic = m;
 		SaveMusicSettingProgress ();
 	}
 
