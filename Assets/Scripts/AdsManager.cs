@@ -11,7 +11,7 @@ public class AdsManager : MonoBehaviour {
 	private Button m_Button;
 	private string gameId = "1792243";
 	//private string placementId = "rewardedVideo";
-	private string placementId = "video";
+	private string placementId = "rewardedVideo";
 	[HideInInspector]
 	public bool isAds;
 
@@ -58,6 +58,7 @@ public class AdsManager : MonoBehaviour {
 
 		}else if(result == ShowResult.Skipped) {
 			Debug.LogWarning("Video was skipped - Do NOT reward the player");
+			Rewardplayer();
 
 		}else if(result == ShowResult.Failed) {
 			Debug.LogError("Video failed to show");
