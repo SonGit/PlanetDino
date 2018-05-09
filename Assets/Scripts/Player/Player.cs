@@ -155,7 +155,7 @@ public class Player : Character {
 
 					isAddScorePerSecond = false;
 
-					AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerDeath,transform.position);
+					//AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerDeath,transform.position);
 				}
 
 			}
