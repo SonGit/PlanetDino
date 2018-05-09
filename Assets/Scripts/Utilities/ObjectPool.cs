@@ -24,10 +24,8 @@ public class ObjectPool : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		enemy = new GenericObject<Enemy>(ObjectFactory.PrefabType.Enemy,20);
-		explosion1 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion1,2);
-		explosion2 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion2,2);
-		explosion3 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion3,2);
-		explosion4= new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion4,2);
+		explosion1 = new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion1,3);
+		explosion4= new GenericObject<Explosion>(ObjectFactory.PrefabType.Explosion4,3);
 		addScoreText= new GenericObject<AddScoreText>(ObjectFactory.PrefabType.ScoreAddText,1);
 	}
 		

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tree : MonoBehaviour {
 
 	public Transform planetScale;
-
+	public bool specialTree = true;
 	private float startScale;
 	private float deltaScale;
 	Transform t;
@@ -17,6 +17,11 @@ public class Tree : MonoBehaviour {
 		startScale = planetScale.localScale.x;
 		mesh = this.GetComponentInChildren<MeshRenderer> ();
 		t = transform;
+
+		if (specialTree)
+		{
+			iTween.ShakePosition(mesh.gameObject,iTween.Hash("x",0.2f,"time",1.0f));
+		}
 	}
 	
 	// Update is called once per frame

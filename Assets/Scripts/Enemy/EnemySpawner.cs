@@ -65,14 +65,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	Vector3 RandomPoint()
 	{
-		float distanceToCenter = Vector3.Distance (anchor.position,center.position);
-
-		Vector3 pos = Random.insideUnitSphere * 5.5f;
-
-		while (Vector3.Distance (pos, center.position) < distanceToCenter) {
-			pos = Random.insideUnitSphere * 5.5f;
-		}
-		return pos;
+		return Random.onUnitSphere * 5.5f;
 
 	}
 
