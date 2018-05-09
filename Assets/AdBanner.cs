@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 
-public class AdScript : MonoBehaviour {
+public class AdBanner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 
-		showBannerAd();
+		ShowBannerAd();
 
 	}
 
-	private void showBannerAd()
+	private void ShowBannerAd()
 	{
-		string adID = "ca-app-pub-8355966060340523/3111670384";
+		string adID = "ca-app-pub-3940256099942544/6300978111";
 
 		//***For Testing in the Device***
 		AdRequest request = new AdRequest.Builder()
 			.AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
-			.AddTestDevice("2077ef9a63d2b398840261c8221a0c9b")  // My test device.
+			.AddTestDevice("8F81DE33520C4C2A7C6EBEBFEB19D011")  // My test device.
 			.Build();
 
 		//***For Production When Submit App***

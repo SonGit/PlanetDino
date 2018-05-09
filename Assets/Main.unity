@@ -1373,12 +1373,12 @@ GameObject:
   - component: {fileID: 559570991}
   - component: {fileID: 559570990}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BannerAd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &559570990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7880,11 +7880,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114857332291291588, guid: 4c0eeab2667065b4c9752b7971304a65,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1291728386}
     - target: {fileID: 114624741433952876, guid: 4c0eeab2667065b4c9752b7971304a65,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7895,10 +7890,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 442657721}
-    - target: {fileID: 1770867362094696, guid: 4c0eeab2667065b4c9752b7971304a65, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114857332291291588, guid: 4c0eeab2667065b4c9752b7971304a65,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1291728386}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c0eeab2667065b4c9752b7971304a65, type: 2}
   m_IsPrefabParent: 0

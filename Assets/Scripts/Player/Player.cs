@@ -82,6 +82,9 @@ public class Player : Character {
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
 			ChangeColor ();
+			if (AudioManager_RB.instance != null) {
+				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.EnemyHit,transform.position);
+			}
 
 			if (!isRendererPlayer) 
 			{
@@ -132,7 +135,7 @@ public class Player : Character {
 			if (currentLife > 0)
 			{
 				if(AudioManager_RB.instance != null)
-				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerInjured,transform.position);
+				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerHurt,transform.position);
 				ScoreUI.instance.comboCount = 0;
 				PlayerUndying ();
 			}
@@ -155,7 +158,7 @@ public class Player : Character {
 
 					isAddScorePerSecond = false;
 
-					//AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerDeath,transform.position);
+					AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.PlayerDeath,transform.position);
 				}
 
 			}

@@ -26,9 +26,9 @@ public class AudioManager_RB : MonoBehaviour {
 
 			{ SoundFX.None, null },
 			{ SoundFX.Click, Resources.Load<AudioClip>("Sounds/Click") },
-			{ SoundFX.PlayerInjured, Resources.Load<AudioClip>("Sounds/PlayerInjured") },
-			{ SoundFX.PlayerDeath, Resources.Load<AudioClip>("Sounds/PlayerDeath") },
+			{ SoundFX.PlayerHurt, Resources.Load<AudioClip>("Sounds/PlayerHurt") },
 			{ SoundFX.EnemyHit, Resources.Load<AudioClip>("Sounds/EnemyHit") },
+			{ SoundFX.PlayerDeath, Resources.Load<AudioClip>("Sounds/PlayerDeath") },
 			{ SoundFX.ButtonPresses, Resources.Load<AudioClip>("Sounds/ButtonPresses") },
 		};
 
@@ -39,10 +39,10 @@ public class AudioManager_RB : MonoBehaviour {
 	{
 		None,
 		Click,
-		PlayerInjured,
-		PlayerDeath,
+		PlayerHurt,
 		EnemyHit,
-		ButtonPresses,
+		PlayerDeath,
+		ButtonPresses
 	}
 
 	public void PlayClip(SoundFX soundFX,Vector3 worldPos)
