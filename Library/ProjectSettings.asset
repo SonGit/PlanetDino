@@ -247,8 +247,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: D:/Unity/PlanetDino New/Keystore/user.keystore
+  AndroidKeyaliasName: keystore
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
@@ -681,12 +681,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
-  cloudProjectId: 1dbcef7a-aa25-405d-9f16-52bfa873ba0c
-  projectName: Ads Unity Project (1)
-  organizationId: anhstart2212
+  cloudProjectId: cd7baeac-f3e9-4bdd-9487-f75e4fd82954
+  projectName: CroRoll
+  organizationId: avr_unity
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

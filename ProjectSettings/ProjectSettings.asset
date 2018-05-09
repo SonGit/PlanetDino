@@ -247,8 +247,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Unity/PlanetDino New/Keystore/user.keystore
-  AndroidKeyaliasName: keystore
+  AndroidKeystoreName: D:/Keystore/CroRoll.keystore
+  AndroidKeyaliasName: croroll
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
