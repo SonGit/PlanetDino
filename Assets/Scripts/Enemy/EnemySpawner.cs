@@ -35,15 +35,21 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	int totalEnemy = 0;
-
+	int totalSpawn = 1;
 	IEnumerator Spawn()
 	{
 		while (isSpawn) {
 			yield return new WaitForSeconds (rate);
-			if (totalEnemy < 12) {
+			if (totalEnemy < 15) {
 				Enemy enemyGo = ObjectPool.instance.GetEnemy ();
 				enemyGo.Live ();
-				enemyGo.RandomColor (Random.Range(0,2));
+
+				if (totalSpawn % 2 == 0) {
+					enemyGo.RandomColor (0);
+				} else {
+					enemyGo.RandomColor (1);
+				}
+
 
 
 				Vector3 pos = RandomPoint ();
@@ -51,6 +57,7 @@ public class EnemySpawner : MonoBehaviour {
 				Rigidbody rb = enemyGo.GetComponent<Rigidbody> ();
 				rb.velocity = Vector3.zero;
 				GameManager.instance.enemyList.Add (enemyGo);
+				totalSpawn++;
 			}
 		}
 	}

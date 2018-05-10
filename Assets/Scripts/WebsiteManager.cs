@@ -19,7 +19,7 @@ public class WebsiteManager : MonoBehaviour {
 
 	public void LinkToWebsite ()
 	{
-		Application.OpenURL("http://unity3d.com/");
+		Application.OpenURL ("market://details?id=com.avr.planet");
 		AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.ButtonPresses,transform.position);
 	}
 }

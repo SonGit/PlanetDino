@@ -51,7 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AdScript.cs" />
+     <Compile Include="Assets\AdBanner.cs" />
      <Compile Include="Assets\GoogleMobileAds\Api\AdFailedToLoadEventArgs.cs" />
      <Compile Include="Assets\GoogleMobileAds\Api\AdLoader.cs" />
      <Compile Include="Assets\GoogleMobileAds\Api\AdPosition.cs" />

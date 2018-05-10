@@ -7,12 +7,13 @@ public class Player : Character {
 
 	public static Player instance;
 
-
+	[HideInInspector]
 	public int currentLife;
 	public static int Score = 0;
 	public static int highScore;
 	[HideInInspector]
 	public bool isRendererPlayer;
+
 	public bool isAddScorePerSecond;
 
 	private float RendererPlayerTimeCount;
@@ -79,9 +80,14 @@ public class Player : Character {
 
 	private void OnHitEnemy(Enemy enemy)
 	{
+		if (currentLife <= 0) {
+			return;
+		}
+
 		if (enemy.currentColor.name == currentColor.name) {
 			enemy.Killed ();
 			ChangeColor ();
+
 			if (AudioManager_RB.instance != null) {
 				AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.EnemyHit,transform.position);
 			}
@@ -98,7 +104,6 @@ public class Player : Character {
 		{
 			Killed ();
 			enemy.Killed ();
-
 		}
 	}
 
