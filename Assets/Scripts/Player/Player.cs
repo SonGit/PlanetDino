@@ -102,6 +102,13 @@ public class Player : Character {
 		}
 		else 
 		{
+
+			if (isRendererPlayer) {
+				if (AudioManager_RB.instance != null) {
+					AudioManager_RB.instance.PlayClip (AudioManager_RB.SoundFX.EnemyHit,transform.position);
+				}
+			}
+
 			Killed ();
 			enemy.Killed ();
 		}

@@ -37,7 +37,7 @@ public class MusicThemeManager : MonoBehaviour {
 			if (isOnMusic == "f") {
 				MusicThemeManager.instance.stems [i].source.volume = 0;
 			} else if (isOnMusic == "t"){
-				MusicThemeManager.instance.stems [i].source.volume = 0.6f;
+				MusicThemeManager.instance.stems [i].source.volume = 0.5f;
 			}
 		}
 	}
