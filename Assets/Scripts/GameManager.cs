@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	public List<Enemy> enemyList;
 
 	[HideInInspector]
-	public float countDownTime = 10;
+	public float countDownTime = 5;
 	[HideInInspector]
 	public bool isCountdown;
 

@@ -17,7 +17,7 @@ public class Enemy : Character {
 	{
 		base.Init ();
 		Rigidbody rb = this.GetComponent<Rigidbody> ();
-		rb.velocity = Vector3.zero;;
+		rb.velocity = Vector3.zero;
 	}
 	
 	// Update is called once per frame

@@ -25,7 +25,7 @@ public class ScreenShot : MonoBehaviour {
 
 	[HideInInspector]
 	public Texture2D screenTexture;
-	[HideInInspector]
+
 	public Image shareImage;
 
 
